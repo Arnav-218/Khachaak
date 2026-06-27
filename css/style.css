@@ -313,7 +313,7 @@ nav ul{
 
     display:flex;
 
-    gap:32px;
+    gap:26px;
 }
 
 nav ul li a{
@@ -418,7 +418,7 @@ nav ul li a:hover{
 
 .hero-logo{
 
-    width:min(65vw,850px);
+    width:min(60vw,800px);
 
     height:auto;
 
@@ -1226,13 +1226,13 @@ footer a:hover{
 
     font-family:'Bebas Neue';
 
-    font-size:3rem;
+    font-size:4.5rem;
 
     color:var(--bronze);
 
-    letter-spacing:3px;
+    letter-spacing:4px;
 
-    margin:70px 0 40px;
+    margin:40px 0 80px;
 }
 
 .team-grid{
@@ -1241,20 +1241,22 @@ footer a:hover{
 
     justify-content:center;
 
-    gap:40px;
+    align-items:flex-start;
+
+    gap:70px;
 
     flex-wrap:wrap;
 
-    margin-bottom:60px;
+    margin:60px 0 100px;
 }
 
 .member-card{
 
+    width:320px;
+
     text-align:center;
 
     transition:var(--transition);
-
-   overflow:hidden;
 }
 
 .member-card:hover{
@@ -1265,10 +1267,28 @@ footer a:hover{
 0 0 30px rgba(199,154,118,.12);
 }
 
+.member-card h3{
+
+    margin-top:22px;
+
+    font-size:1.5rem;
+
+    font-weight:600;
+}
+
+.member-card p{
+
+    color:var(--grey);
+
+    margin-top:10px;
+
+    font-size:1.05rem;
+}
+
 .member-placeholder,
 .member-card img{
 
-    width:100%;
+    width:320px;
 
     aspect-ratio:4/5;
 
@@ -1282,7 +1302,7 @@ footer a:hover{
 
     font-family:'Bebas Neue';
 
-    font-size:4rem;
+    font-size:5rem;
 
     color:var(--bronze);
 
@@ -1294,20 +1314,6 @@ footer a:hover{
 .member-card img{
 
     object-fit:cover;
-}
-
-.member-card h3{
-
-    margin-top:18px;
-
-    font-size:1.1rem;
-}
-
-.member-card p{
-
-    color:var(--grey);
-
-    margin-top:6px;
 }
 
 /* =========================================
