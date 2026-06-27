@@ -1518,7 +1518,7 @@ footer a:hover{
 
     .hero-logo{
 
-        width:90vw;
+        width:85vw;
     }
 
     .hero h2{
@@ -1578,6 +1578,23 @@ footer a:hover{
         width:45px;
         height:45px;
     }
+    
+    nav{
+
+    padding:15px 20px;
+}
+
+.logo img{
+
+    width:55px;
+
+    height:55px;
+}
+
+.hamburger{
+
+    display:flex;
+}
 }
 
 /* =========================================
