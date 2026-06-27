@@ -2,276 +2,391 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Khachaak | Stealth Era</title>
+    <title>Khachaak | Stealth Era</title>
 
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<div class="loader">
-    <img src="assets/logo/logo.png" alt="Khachaak">
-</div>
+    <!-- Loader -->
 
-<div class="viewfinder top-left"></div>
-<div class="viewfinder top-right"></div>
-<div class="viewfinder bottom-left"></div>
-<div class="viewfinder bottom-right"></div>
-
-<nav>
-    <div class="logo">
-        <img src="assets/logo/logo.png" alt="">
+    <div class="loader">
+        <img src="assets/logo/logo.png" alt="Khachaak">
     </div>
 
-    <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#stories">Featured Stories</a></li>
-        <li><a href="#gallery">Wall of Frames</a></li>
-        <li><a href="events.html">Events</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="advisory.html">Alumni</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+    <!-- Viewfinder Corners -->
 
-<section class="hero">
+    <div class="viewfinder top-left"></div>
+    <div class="viewfinder top-right"></div>
+    <div class="viewfinder bottom-left"></div>
+    <div class="viewfinder bottom-right"></div>
 
-    <div class="hero-overlay"></div>
+    <!-- Navbar -->
 
-    <div class="hero-content">
+    <nav>
 
-        <h1>KHACHAAK</h1>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo/logo.png" alt="Khachaak">
+            </a>
+        </div>
 
-        <p>Official Photography Club of NMIMS MPSTME</p>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#stories">Featured Stories</a></li>
+            <li><a href="#gallery">Wall of Frames</a></li>
+            <li><a href="#theme">Theme</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="advisory.html">Advisory</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
 
-        <h2>STEALTH ERA</h2>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-        <a href="#gallery" class="btn">
-            Explore Frames
+    </nav>
+
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <img src="assets/logo/logo.png" class="hero-logo" alt="Khachaak">
+
+            <h2>STEALTH ERA</h2>
+
+            <p>
+                Official Photography Club of NMIMS MPSTME
+            </p>
+
+            <a href="#gallery" class="btn">
+                Explore Frames
+            </a>
+
+        </div>
+
+        <div class="scroll-indicator">
+            Scroll
+        </div>
+
+    </section>
+
+    <!-- About -->
+
+    <section id="about">
+
+        <div class="section-title">
+            About Us
+        </div>
+
+        <div class="about-container">
+
+            <div class="about-image">
+                <img src="assets/about/about.webp" alt="About Khachaak">
+            </div>
+
+            <div class="about-text">
+
+                <p>
+                    Khachaak is the official photography club of MPSTME, NMIMS.
+                    Through our lens, we capture the spirit of campus life—its
+                    people, events, stories, and moments.
+                </p>
+
+                <p>
+                    From phone photographers to DSLR enthusiasts, we bring
+                    together a community passionate about visual storytelling,
+                    creativity, and exploration.
+                </p>
+
+                <p>
+                    Lights, Camera, Khachaak 📸
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Featured Stories -->
+
+    <section id="stories">
+
+        <div class="section-title">
+            Featured Stories
+        </div>
+
+        <div class="stories-grid">
+
+            <a href="events.html" class="story-card">
+
+                <img src="assets/stories/story1.webp" alt="Autoshow">
+
+                <div class="story-info">
+                    AUTOSHOW
+                </div>
+
+            </a>
+
+            <a href="events.html" class="story-card">
+
+                <img src="assets/stories/story2.webp" alt="Mumbai">
+
+                <div class="story-info">
+                    MUMBAI
+                </div>
+
+            </a>
+
+            <a href="events.html" class="story-card">
+
+                <img src="assets/stories/story3.webp" alt="Monsoon Frames">
+
+                <div class="story-info">
+                    MONSOON FRAMES
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Wall of Frames -->
+
+    <section id="gallery">
+
+        <div class="section-title">
+            Wall of Frames
+        </div>
+
+        <div class="gallery-filters">
+
+            <button>All</button>
+            <button>Autoshow</button>
+            <button>Events</button>
+            <button>Street</button>
+            <button>Portraits</button>
+            <button>Architecture</button>
+            <button>College Life</button>
+
+        </div>
+
+        <div class="gallery-grid">
+
+            <!-- Featured gallery images go here -->
+
+        </div>
+
+        <div class="gallery-cta">
+
+            <a href="gallery.html" class="btn">
+                View Full Gallery
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- Theme of the Month -->
+
+    <section id="theme">
+
+        <div class="section-title">
+            Theme of the Month
+        </div>
+
+        <div class="theme-container">
+
+            <div class="theme-image">
+
+                <img src="assets/month/theme.webp" alt="Theme of the Month">
+
+            </div>
+
+            <div class="theme-content">
+
+                <h3>Theme Name</h3>
+
+                <p>
+                    Monthly theme description goes here.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Photos of the Month -->
+
+    <section id="month">
+
+        <div class="section-title">
+            Photos of the Month
+        </div>
+
+        <div class="month-grid">
+
+            <div class="month-card">
+
+                <span>#1</span>
+
+                <img src="assets/month/1.webp" alt="Photo of the Month">
+
+                <h3>Photographer Name</h3>
+
+            </div>
+
+            <div class="month-card">
+
+                <span>#2</span>
+
+                <img src="assets/month/2.webp" alt="Photo of the Month">
+
+                <h3>Photographer Name</h3>
+
+            </div>
+
+            <div class="month-card">
+
+                <span>#3</span>
+
+                <img src="assets/month/3.webp" alt="Photo of the Month">
+
+                <h3>Photographer Name</h3>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Behind The Lens -->
+
+    <section id="stats">
+
+        <div class="section-title">
+            Behind The Lens
+        </div>
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <h2>200+</h2>
+
+                <p>Members</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>5000+</h2>
+
+                <p>Photos Captured</p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>25+</h2>
+
+                <p>Events Covered</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Join Us -->
+
+    <section id="join">
+
+        <h2>Join Khachaak</h2>
+
+        <p>
+            Become a part of NMIMS MPSTME's photography community.
+        </p>
+
+        <a href="#">
+            Join WhatsApp Community
         </a>
 
-    </div>
+    </section>
 
-</section>
+    <!-- Contact -->
 
-<section id="about">
+    <section id="contact">
 
-    <div class="section-title">
-        About Us
-    </div>
+        <div class="contact-left">
 
-    <div class="about-container">
+            <h2>Get In Touch</h2>
 
-        <div class="about-image">
-            <img src="assets/about/about.webp" alt="">
-        </div>
+            <a href="https://instagram.com/khachaak.mpstme" target="_blank">
+                @khachaak.mpstme
+            </a>
 
-        <div class="about-text">
-
-            <p>
-                Khachaak is the official photography club of MPSTME, NMIMS. Through our lens, we capture the spirit of campus life—its people, events, stories, and moments. From phone photographers to DSLR enthusiasts, we bring together a community passionate about visual storytelling, creativity, and exploration. <br>
-              Lights, Camera, Khachaak 📸
-            </p>
+            <a href="mailto:khachaak@mpstme.edu.in">
+                khachaak@mpstme.edu.in
+            </a>
 
         </div>
 
-    </div>
+        <div class="contact-right">
 
-</section>
+            <a href="#" target="_blank">
 
-<section id="stories">
+                <img src="assets/location/mpstme.webp" alt="MPSTME">
 
-    <div class="section-title">
-        Featured Stories
-    </div>
+                <div class="location-overlay">
 
-    <div class="stories-grid">
+                    📍 MPSTME, Mumbai
 
-        <div class="story-card">
-            <img src="assets/stories/story1.webp">
-            <div class="story-info">
-                AUTOSHOW
-            </div>
-        </div>
+                </div>
 
-        <div class="story-card">
-            <img src="assets/stories/story2.webp">
-            <div class="story-info">
-                MUMBAI
-            </div>
-        </div>
-
-        <div class="story-card">
-            <img src="assets/stories/story3.webp">
-            <div class="story-info">
-                MONSOON FRAMES
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="gallery">
-
-    <div class="section-title">
-        Wall of Frames
-    </div>
-
-    <div class="gallery-filters">
-
-        <button>All</button>
-        <button>Autoshow</button>
-        <button>Events</button>
-        <button>Street</button>
-        <button>Portraits</button>
-        <button>Architecture</button>
-        <button>College Life</button>
-
-    </div>
-
-    <div class="gallery-grid">
-
-    </div>
-
-</section>
-
-<section id="theme">
-
-    <div class="section-title">
-        Theme of the Month
-    </div>
-
-    <div class="theme-container">
-
-        <img src="assets/month/theme.webp">
-
-        <div class="theme-content">
-
-            <h3>Theme name</h3>
-
-            <p>
-                Monthly theme description.
-            </p>
+            </a>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
+    <!-- Footer -->
 
-<section id="month">
+    <footer>
 
-    <div class="section-title">
-        Photos of the Month
-    </div>
+        <img src="assets/logo/logo.png" alt="Khachaak">
 
-    <div class="month-grid">
+        <p>
+            Official Photography Club of NMIMS MPSTME
+        </p>
 
-        <div class="month-card">
-            <span>#1</span>
-            <img src="assets/month/1.webp">
-        </div>
-
-        <div class="month-card">
-            <span>#2</span>
-            <img src="assets/month/2.webp">
-        </div>
-
-        <div class="month-card">
-            <span>#3</span>
-            <img src="assets/month/3.webp">
-        </div>
-
-    </div>
-
-</section>
-
-<section id="stats">
-
-    <div class="section-title">
-        Behind The Lens
-    </div>
-
-    <div class="stats-grid">
-
-        <div class="stat-card">
-            <h2>200+</h2>
-            <p>Members</p>
-        </div>
-
-        <div class="stat-card">
-            <h2>5000+</h2>
-            <p>Photos Captured</p>
-        </div>
-
-        <div class="stat-card">
-            <h2>25+</h2>
-            <p>Events Covered</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="join">
-
-    <h2>Join Khachaak</h2>
-
-    <a href="#">
-        Join WhatsApp Community
-    </a>
-
-</section>
-
-<section id="contact">
-
-    <div class="contact-left">
-
-        <h2>Get In Touch</h2>
-
-        <a href="https://instagram.com/khachaak.mpstme">
+        <a href="https://instagram.com/khachaak.mpstme" target="_blank">
             @khachaak.mpstme
         </a>
 
-        <p>gmail</p>
+    </footer>
 
-    </div>
-
-    <div class="contact-right">
-
-        <a href="#">
-
-            <img src="assets/location/mpstme.webp">
-
-            <div class="location-overlay">
-
-                📍 MPSTME, Mumbai
-
-            </div>
-
-        </a>
-
-    </div>
-
-</section>
-
-<footer>
-
-    <p>
-        Khachaak • MPSTME Photography Club
-    </p>
-
-</footer>
-
-<script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
+
 </html>
+```
