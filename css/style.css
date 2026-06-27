@@ -302,7 +302,7 @@ nav.scrolled{
 
 .logo img{
 
-    width:170px;
+    width:140px;
 
     height:auto;
 
@@ -375,32 +375,15 @@ nav ul li a:hover{
 
     overflow:hidden;
 
-    background-image:url("../assets/hero/hero1.webp");
+    background:url("../assets/hero/hero1.webp");
 
     background-size:cover;
 
     background-position:center;
 
     background-repeat:no-repeat;
-}
-
-.hero::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:inherit;
-
-    background-size:cover;
-
-    background-position:center;
 
     animation:kenburns 18s ease-in-out infinite alternate;
-
-    z-index:0;
 }
 
 .hero-overlay{
@@ -435,11 +418,16 @@ nav ul li a:hover{
 
 .hero-logo{
 
-    width:min(70vw,900px);
+    width:min(65vw,850px);
 
-    margin:0 auto 25px auto;
+    height:auto;
 
     object-fit:contain;
+
+    margin:0 auto 30px auto;
+
+    filter:
+    drop-shadow(0 0 20px rgba(199,154,118,.15));
 }
 
 .hero h2{
@@ -600,7 +588,7 @@ nav ul li a:hover{
 
     border-radius:14px;
 
-    height:550px;
+    height:600px;
 
     cursor:pointer;
 
@@ -701,13 +689,20 @@ nav ul li a:hover{
     color:#050505;
 }
 
+.gallery-filters button.active{
+
+    background:var(--bronze);
+
+    color:#050505;
+}
+
 /* =========================================
    MASONRY GALLERY
 ========================================= */
 
 .gallery-grid{
 
-    column-count:3;
+    column-count:4;
 
     column-gap:22px;
 }
@@ -725,6 +720,8 @@ nav ul li a:hover{
     cursor:pointer;
 
     background:#111;
+
+    transition:.4s ease;
 }
 
 .gallery-item img{
@@ -790,7 +787,9 @@ nav ul li a:hover{
 
     font-family:'Cormorant Garamond';
 
-    font-size:4rem;
+    font-size:5rem;
+
+    line-height:1;
 
     color:var(--bronze);
 
@@ -1253,11 +1252,16 @@ footer a:hover{
     text-align:center;
 
     transition:var(--transition);
+
+   overflow:hidden;
 }
 
 .member-card:hover{
 
     transform:translateY(-8px);
+
+   box-shadow:
+0 0 30px rgba(199,154,118,.12);
 }
 
 .member-placeholder,
@@ -1404,6 +1408,9 @@ footer a:hover{
     padding:40px;
 
     transition:.5s ease;
+
+   box-shadow:
+    -10px 0 40px rgba(0,0,0,.5);
 }
 
 .mobile-menu.active{
@@ -1575,4 +1582,69 @@ footer a:hover{
 
         font-size:5rem;
     }
+}
+
+.gallery-item img,
+.story-card img,
+.month-card img,
+.theme-image img{
+
+    will-change:transform;
+}
+
+/* =========================================
+   LIGHTBOX
+========================================= */
+
+.lightbox{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.95);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+}
+
+.lightbox.active{
+
+    display:flex;
+}
+
+.lightbox img{
+
+    max-width:90%;
+
+    max-height:90vh;
+
+    object-fit:contain;
+}
+
+.close-lightbox{
+
+    position:absolute;
+
+    top:30px;
+
+    right:40px;
+
+    font-size:3rem;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.close-lightbox:hover{
+
+    color:var(--bronze);
 }
