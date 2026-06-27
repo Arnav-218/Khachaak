@@ -1,31 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Khachaak | Wall of Frames</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
 <body>
 
-<nav>Same navbar</nav>
+    <div class="viewfinder top-left"></div>
+    <div class="viewfinder top-right"></div>
+    <div class="viewfinder bottom-left"></div>
+    <div class="viewfinder bottom-right"></div>
 
-<section class="page-hero">
+    <nav>
 
-<h1>Wall of Frames</h1>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/logo/logo.png" alt="Khachaak">
+            </a>
+        </div>
 
-</section>
+        <ul>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="gallery.html">Wall of Frames</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="advisory.html">Advisory</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
 
-<div class="gallery-filters">
+    </nav>
 
-<button>All</button>
-<button>Autoshow</button>
-<button>Events</button>
-<button>Street</button>
-<button>Portraits</button>
-<button>Architecture</button>
-<button>College Life</button>
+    <section class="page-hero">
 
-</div>
+        <h1>WALL OF FRAMES</h1>
 
-<section class="gallery-grid">
+    </section>
 
-</section>
+    <section>
 
-<footer></footer>
+        <div class="gallery-filters">
 
-<script src="js/script.js"></script>
+            <button class="active">All</button>
+            <button>Autoshow</button>
+            <button>Events</button>
+            <button>Street</button>
+            <button>Portraits</button>
+            <button>Architecture</button>
+            <button>College Life</button>
+
+        </div>
+
+        <div class="gallery-page">
+
+            <!-- Autoshow -->
+
+            <div class="gallery-item autoshow">
+                <img src="assets/gallery/autoshow/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item autoshow">
+                <img src="assets/gallery/autoshow/2.webp" alt="">
+            </div>
+
+            <!-- Events -->
+
+            <div class="gallery-item events">
+                <img src="assets/gallery/events/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item events">
+                <img src="assets/gallery/events/2.webp" alt="">
+            </div>
+
+            <!-- Street -->
+
+            <div class="gallery-item street">
+                <img src="assets/gallery/street/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item street">
+                <img src="assets/gallery/street/2.webp" alt="">
+            </div>
+
+            <!-- Portraits -->
+
+            <div class="gallery-item portraits">
+                <img src="assets/gallery/portraits/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item portraits">
+                <img src="assets/gallery/portraits/2.webp" alt="">
+            </div>
+
+            <!-- Architecture -->
+
+            <div class="gallery-item architecture">
+                <img src="assets/gallery/architecture/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item architecture">
+                <img src="assets/gallery/architecture/2.webp" alt="">
+            </div>
+
+            <!-- College Life -->
+
+            <div class="gallery-item college">
+                <img src="assets/gallery/college-life/1.webp" alt="">
+            </div>
+
+            <div class="gallery-item college">
+                <img src="assets/gallery/college-life/2.webp" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+        <img src="assets/logo/logo.png" alt="Khachaak">
+
+        <p>
+            Official Photography Club of NMIMS MPSTME
+        </p>
+
+        <a href="https://instagram.com/khachaak.mpstme" target="_blank">
+            @khachaak.mpstme
+        </a>
+
+    </footer>
+
+    <div class="lightbox">
+
+        <span class="close-lightbox">&times;</span>
+
+        <img src="" alt="">
+
+    </div>
+
+    <script src="js/script.js"></script>
 
 </body>
+
+</html>
