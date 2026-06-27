@@ -1237,14 +1237,15 @@ footer a:hover{
 
 .team-grid{
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
+    justify-content:center;
 
     gap:40px;
 
-    margin-bottom:40px;
+    flex-wrap:wrap;
+
+    margin-bottom:60px;
 }
 
 .member-card{
@@ -1357,6 +1358,17 @@ footer a:hover{
     font-size:2rem;
 
     color:var(--bronze);
+}
+
+.event-card p{
+
+    padding:0 25px 25px;
+
+    color:var(--grey);
+
+    text-align:center;
+
+    line-height:1.8;
 }
 
 /* =========================================
