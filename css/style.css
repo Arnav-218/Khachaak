@@ -702,7 +702,7 @@ nav ul li a:hover{
 
 .gallery-grid{
 
-    column-count:4;
+    column-count:5;
 
     column-gap:22px;
 }
