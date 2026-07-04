@@ -288,10 +288,12 @@ nav{
 
     z-index:5000;
 
-    transition:var(--transition);
+    transition:all .4s ease;
 }
 
 nav.scrolled{
+
+    padding:10px 8%;
 
     background:rgba(5,5,5,.75);
 
@@ -307,6 +309,13 @@ nav.scrolled{
     height:auto;
 
     object-fit:contain;
+
+    transition:all .4s ease;
+}
+
+nav.scrolled .logo img{
+
+    width:75px;
 }
 
 nav ul{
@@ -426,7 +435,7 @@ nav ul li a:hover{
 
 .hero-logo{
 
-    width:min(28vw,320px);
+    width:min(22vw,250px);
 
     height:auto;
 
