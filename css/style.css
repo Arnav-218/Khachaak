@@ -373,6 +373,8 @@ nav ul li a:hover{
 
     align-items:center;
 
+   text-align:centre;
+
     overflow:hidden;
 
     background:url("../assets/hero/hero1.webp");
@@ -420,21 +422,19 @@ nav ul li a:hover{
     justify-content:center;
 
     text-align:center;
-
-    transform:translateY(40px);
 }
 
 .hero-logo{
 
     display:block;
 
-    width:min(60vw,800px);
+    width:min(45vw,550px);
 
     height:auto;
 
     object-fit:contain;
 
-    margin:0 auto 30px;
+    margin:0 auto 15px;
 
     filter:
     drop-shadow(0 0 20px rgba(199,154,118,.25));
