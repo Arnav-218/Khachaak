@@ -302,7 +302,7 @@ nav.scrolled{
 
 .logo img{
 
-    width:140px;
+    width:100px;
 
     height:auto;
 
@@ -373,7 +373,7 @@ nav ul li a:hover{
 
     align-items:center;
 
-   text-align:centre;
+   text-align:center;
 
     overflow:hidden;
 
@@ -384,8 +384,6 @@ nav ul li a:hover{
     background-position:center;
 
     background-repeat:no-repeat;
-
-    animation:kenburns 18s ease-in-out infinite alternate;
 }
 
 .hero-overlay{
@@ -422,19 +420,19 @@ nav ul li a:hover{
     justify-content:center;
 
     text-align:center;
+   
+   gap:15px;
 }
 
 .hero-logo{
 
-    display:block;
-
-    width:min(45vw,550px);
+    width:min(28vw,320px);
 
     height:auto;
 
     object-fit:contain;
 
-    margin:0 auto 15px;
+    margin:0 auto 20px;
 
     filter:
     drop-shadow(0 0 20px rgba(199,154,118,.25));
@@ -481,48 +479,6 @@ nav ul li a:hover{
 
     to{
         transform:scale(1.12);
-    }
-}
-
-/* =========================================
-   SCROLL INDICATOR
-========================================= */
-
-.scroll-indicator{
-
-    position:absolute;
-
-    bottom:35px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:2;
-
-    color:var(--bronze);
-
-    font-size:.9rem;
-
-    letter-spacing:3px;
-
-    text-transform:uppercase;
-
-    animation:bounce 2s infinite;
-}
-
-@keyframes bounce{
-
-    0%,100%{
-        transform:
-        translateX(-50%)
-        translateY(0);
-    }
-
-    50%{
-        transform:
-        translateX(-50%)
-        translateY(-8px);
     }
 }
 
@@ -1528,8 +1484,10 @@ footer a:hover{
 
     .hero-logo{
 
-        width:85vw;
-    }
+    width:70vw;
+
+    max-width:280px;
+   }
 
     .hero h2{
 
@@ -1615,7 +1573,7 @@ footer a:hover{
 
     .hero-logo{
 
-        width:min(60vw,1100px);
+        width:min(30vw,400px);
     }
 
     .hero h2{
