@@ -682,6 +682,13 @@ nav ul li a:hover{
     column-gap:22px;
 }
 
+.gallery-page{
+
+    column-count:5;
+
+    column-gap:22px;
+}
+
 .gallery-item{
 
     margin-bottom:22px;
