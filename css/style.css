@@ -433,18 +433,19 @@ nav ul li a:hover{
    gap:15px;
 }
 
-.hero-logo{
+.hero-brand{
 
-    width:min(22vw,250px);
+    font-family:'Cormorant Garamond', serif;
 
-    height:auto;
+    font-size:clamp(5rem,10vw,9rem);
 
-    object-fit:contain;
+    font-weight:500;
 
-    margin:0 auto 20px;
+    color:#fff;
 
-    filter:
-    drop-shadow(0 0 20px rgba(199,154,118,.25));
+    line-height:1;
+
+    margin-bottom:30px;
 }
 
 .hero h2{
@@ -1505,12 +1506,10 @@ footer a:hover{
         display:flex;
     }
 
-    .hero-logo{
+   .hero-brand{
 
-    width:70vw;
-
-    max-width:280px;
-   }
+    font-size:4.5rem;
+}
 
     .hero h2{
 
@@ -1594,9 +1593,9 @@ footer a:hover{
 
 @media(min-width:1600px){
 
-    .hero-logo{
+    .hero-brand{
 
-        width:min(30vw,400px);
+        font-size:10rem;
     }
 
     .hero h2{
