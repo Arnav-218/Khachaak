@@ -1011,7 +1011,7 @@ nav ul li a:hover{
 
     gap:60px;
 
-    align-items:center;
+    align-items:end;
 }
 
 .contact-left{
@@ -1061,7 +1061,7 @@ nav ul li a:hover{
 
     width:100%;
 
-    height:500px;
+    height:400px;
 
     object-fit:cover;
 
