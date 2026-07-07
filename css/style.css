@@ -690,32 +690,39 @@ nav ul li a:hover{
 
     overflow:hidden;
 
-    border-radius:10px;
+    border-radius:16px;
 
     cursor:pointer;
 
-    background:#111;
+    background:#0b0b0b;
 
-    transition:.4s ease;
+    border:1px solid rgba(199,154,118,.12);
+
+    transition:all .4s ease;
 }
 
 .gallery-item img{
 
     width:100%;
 
+    display:block;
+
     transition:.8s ease;
+}
+
+.gallery-item:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 0 20px rgba(199,154,118,.10);
 }
 
 .gallery-item:hover img{
 
     transform:scale(1.05);
-}
 
-.gallery-item:hover{
-
-    box-shadow:
-    0 0 25px
-    rgba(199,154,118,.15);
+    filter:brightness(1.08);
 }
 
 .gallery-cta{
