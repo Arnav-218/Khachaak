@@ -382,7 +382,7 @@ nav ul li a:hover{
 
     align-items:center;
 
-   text-align:center;
+    text-align:center;
 
     overflow:hidden;
 
@@ -393,6 +393,48 @@ nav ul li a:hover{
     background-position:center;
 
     background-repeat:no-repeat;
+}
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        115deg,
+        transparent 0%,
+        rgba(199,154,118,.03) 30%,
+        transparent 60%
+    );
+
+    animation:beam1 12s linear infinite;
+
+    z-index:1;
+}
+
+.hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    linear-gradient(
+        65deg,
+        transparent 0%,
+        rgba(199,154,118,.02) 40%,
+        transparent 70%
+    );
+
+    animation:beam2 15s linear infinite;
+
+    z-index:1;
 }
 
 .hero-overlay{
@@ -489,6 +531,28 @@ nav ul li a:hover{
 
     to{
         transform:scale(1.12);
+    }
+}
+
+@keyframes beam1{
+
+    from{
+        transform:translateX(-100%);
+    }
+
+    to{
+        transform:translateX(100%);
+    }
+}
+
+@keyframes beam2{
+
+    from{
+        transform:translateX(100%);
+    }
+
+    to{
+        transform:translateX(-100%);
     }
 }
 
