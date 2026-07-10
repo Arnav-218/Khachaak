@@ -401,19 +401,27 @@ nav ul li a:hover{
 
     position:absolute;
 
-    inset:0;
+    top:-50%;
+
+    left:-50%;
+
+    width:200%;
+
+    height:200%;
 
     background:
     linear-gradient(
         115deg,
-        transparent 0%,
-        rgba(199,154,118,.03) 30%,
-        transparent 60%
+        transparent 35%,
+        rgba(199,154,118,.12) 50%,
+        transparent 65%
     );
 
     animation:beam1 12s linear infinite;
 
-    z-index:1;
+    z-index:2;
+
+    pointer-events:none;
 }
 
 .hero::after{
@@ -422,19 +430,27 @@ nav ul li a:hover{
 
     position:absolute;
 
-    inset:0;
+    top:-50%;
+
+    left:-50%;
+
+    width:200%;
+
+    height:200%;
 
     background:
     linear-gradient(
         65deg,
-        transparent 0%,
-        rgba(199,154,118,.02) 40%,
-        transparent 70%
+        transparent 40%,
+        rgba(199,154,118,.08) 50%,
+        transparent 60%
     );
 
     animation:beam2 15s linear infinite;
 
-    z-index:1;
+    z-index:2;
+
+    pointer-events:none;
 }
 
 .hero-overlay{
@@ -456,7 +472,7 @@ nav ul li a:hover{
 
     position:relative;
 
-    z-index:2;
+    z-index:3;
 
     width:90%;
 
@@ -471,8 +487,8 @@ nav ul li a:hover{
     justify-content:center;
 
     text-align:center;
-   
-   gap:15px;
+
+    gap:15px;
 }
 
 .hero-brand{
@@ -537,22 +553,22 @@ nav ul li a:hover{
 @keyframes beam1{
 
     from{
-        transform:translateX(-100%);
+        transform:translateX(-15%) rotate(0deg);
     }
 
     to{
-        transform:translateX(100%);
+        transform:translateX(15%) rotate(0deg);
     }
 }
 
 @keyframes beam2{
 
     from{
-        transform:translateX(100%);
+        transform:translateX(15%) rotate(0deg);
     }
 
     to{
-        transform:translateX(-100%);
+        transform:translateX(-15%) rotate(0deg);
     }
 }
 
