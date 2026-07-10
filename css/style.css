@@ -683,19 +683,75 @@ nav ul li a:hover{
 
     position:absolute;
 
-    bottom:35px;
+    left:0;
 
-    left:30px;
+    bottom:0;
+
+    width:100%;
+
+    padding:25px;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.92),
+        rgba(0,0,0,.45),
+        transparent
+    );
+
+    color:#fff;
 
     z-index:2;
+}
 
-    font-family:'Bebas Neue';
+.story-info h3{
+
+    font-family:'Bebas Neue',sans-serif;
 
     font-size:2rem;
 
-    letter-spacing:3px;
+    letter-spacing:2px;
 
-    color:white;
+    margin:0;
+}
+
+.story-info p{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    margin-top:0;
+
+    transform:translateY(10px);
+
+    font-family:'Inter',sans-serif;
+
+    font-size:.95rem;
+
+    line-height:1.7;
+
+    color:#d8d8d8;
+
+    transition:all .4s ease;
+}
+
+.story-card.active .story-info p{
+
+    max-height:180px;
+
+    opacity:1;
+
+    margin-top:12px;
+
+    transform:translateY(0);
+}
+
+.story-card.active img{
+
+    transform:scale(1.05);
 }
 
 .story-card:hover img{
