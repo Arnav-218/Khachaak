@@ -282,7 +282,7 @@ nav{
 
     display:flex;
 
-    justify-content:space-between;
+    justify-content:flex-end;
 
     align-items:center;
 
@@ -300,22 +300,6 @@ nav.scrolled{
     backdrop-filter:blur(15px);
 
     border-bottom:1px solid rgba(199,154,118,.25);
-}
-
-.logo img{
-
-    width:100px;
-
-    height:auto;
-
-    object-fit:contain;
-
-    transition:all .4s ease;
-}
-
-nav.scrolled .logo img{
-
-    width:75px;
 }
 
 nav ul{
@@ -349,9 +333,9 @@ nav ul li a:hover{
 
     position:fixed;
 
-    top:30px;
+    top:25px;
 
-    left:140px;
+    left:30px;
 
     z-index:6000;
 
@@ -1767,9 +1751,9 @@ footer a:hover{
 
     display:flex;
 }
-   .back-btn{
+.back-btn{
 
-    top:75px;
+    top:18px;
 
     left:15px;
 
