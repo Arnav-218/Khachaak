@@ -342,6 +342,52 @@ nav ul li a:hover{
 }
 
 /* =========================================
+   BACK BUTTON
+========================================= */
+
+.back-btn{
+
+    position:fixed;
+
+    top:30px;
+
+    left:140px;
+
+    z-index:6000;
+
+    padding:10px 18px;
+
+    background:rgba(5,5,5,.85);
+
+    border:1px solid rgba(199,154,118,.25);
+
+    border-radius:50px;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:.95rem;
+
+    backdrop-filter:blur(10px);
+
+    transition:.3s ease;
+}
+
+.back-btn:hover{
+
+    background:rgba(199,154,118,.12);
+
+    border-color:rgba(199,154,118,.5);
+
+    color:var(--bronze);
+
+    transform:translateX(-3px);
+}
+
+/* =========================================
    HAMBURGER
 ========================================= */
 
@@ -1720,6 +1766,16 @@ footer a:hover{
 .hamburger{
 
     display:flex;
+}
+   .back-btn{
+
+    top:75px;
+
+    left:15px;
+
+    padding:8px 14px;
+
+    font-size:.85rem;
 }
 }
 
