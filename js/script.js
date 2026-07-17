@@ -162,55 +162,77 @@ const filterButtons =
 const galleryItems =
     document.querySelectorAll(".gallery-item");
 
+const isFullGallery =
+    document.querySelector(".gallery-page");
+
 filterButtons.forEach(button => {
 
     button.addEventListener("click", () => {
 
         filterButtons.forEach(btn => {
-
             btn.classList.remove("active");
-
         });
 
         button.classList.add("active");
 
         const filter =
-    button.textContent
-    .toLowerCase()
-    .replace(/\s+/g, "-");
+            button.textContent.toLowerCase();
 
         galleryItems.forEach(item => {
 
-            if(filter === "all"){
+            if(isFullGallery){
 
-    item.classList.remove("dimmed");
+                /* gallery.html behaviour */
 
-    item.classList.remove("active-filter");
-}
+                if(filter === "all"){
 
-else{
+                    item.style.display = "block";
+                }
 
-    if(item.classList.contains(filter)){
+                else{
 
-        item.classList.remove("dimmed");
+                    if(item.classList.contains(filter)){
 
-        item.classList.add("active-filter");
-    }
+                        item.style.display = "block";
+                    }
 
-    else{
+                    else{
 
-        item.classList.remove("active-filter");
+                        item.style.display = "none";
+                    }
+                }
 
-        item.classList.add("dimmed");
-    }
-}
+            }else{
+
+                /* homepage behaviour */
+
+                if(filter === "all"){
+
+                    item.classList.remove("dimmed");
+                    item.classList.remove("active-filter");
+                }
+
+                else{
+
+                    if(item.classList.contains(filter)){
+
+                        item.classList.remove("dimmed");
+                        item.classList.add("active-filter");
+                    }
+
+                    else{
+
+                        item.classList.remove("active-filter");
+                        item.classList.add("dimmed");
+                    }
+                }
+            }
 
         });
 
     });
 
 });
-
 
 /* =========================================
    LIGHTBOX
