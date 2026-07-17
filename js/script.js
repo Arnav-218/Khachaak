@@ -181,25 +181,29 @@ filterButtons.forEach(button => {
 
         galleryItems.forEach(item => {
 
-            if (filter === "all") {
+            if(filter === "all"){
 
-                item.style.display = "block";
+    item.classList.remove("dimmed");
 
-            }
+    item.classList.remove("active-filter");
+}
 
-            else {
+else{
 
-                if (item.classList.contains(filter)) {
+    if(item.classList.contains(filter)){
 
-                    item.style.display = "block";
+        item.classList.remove("dimmed");
 
-                }
+        item.classList.add("active-filter");
+    }
 
-                else {
+    else{
 
-                    item.style.display = "none";
-                }
-            }
+        item.classList.remove("active-filter");
+
+        item.classList.add("dimmed");
+    }
+}
 
         });
 
