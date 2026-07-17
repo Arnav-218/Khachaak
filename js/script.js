@@ -176,7 +176,9 @@ filterButtons.forEach(button => {
         button.classList.add("active");
 
         const filter =
-            button.textContent.toLowerCase();
+    button.textContent
+    .toLowerCase()
+    .replace(/\s+/g, "-");
 
         galleryItems.forEach(item => {
 
