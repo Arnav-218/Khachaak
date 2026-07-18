@@ -412,9 +412,9 @@ nav ul li a:hover{
     background:
     linear-gradient(
         115deg,
-        transparent 35%,
-        rgba(199,154,118,.12) 50%,
-        transparent 65%
+        transparent 20%,
+        rgba(199,154,118,.18) 50%,
+        transparent 80%
     );
 
     animation:beam1 12s linear infinite;
@@ -441,9 +441,9 @@ nav ul li a:hover{
     background:
     linear-gradient(
         65deg,
-        transparent 40%,
-        rgba(199,154,118,.08) 50%,
-        transparent 60%
+        transparent 25%,
+        rgba(199,154,118,.14) 50%,
+        transparent 75%
     );
 
     animation:beam2 15s linear infinite;
