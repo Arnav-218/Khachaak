@@ -397,8 +397,6 @@ if(heroSubtitle){
    CAMERA FOCUS
 ========================================= */
 
-const hero = document.querySelector(".hero");
-
 if(hero){
 
     setInterval(()=>{
