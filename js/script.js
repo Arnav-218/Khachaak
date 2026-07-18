@@ -348,3 +348,69 @@ window.addEventListener("scroll", () => {
     });
 
 });
+
+/* =========================================
+   HERO SUBTITLE
+========================================= */
+
+const heroSubtitle = document.getElementById("heroSubtitle");
+
+if(heroSubtitle){
+
+    const subtitles=[
+
+        "Capture.",
+        "Create.",
+        "Inspire.",
+
+        "Lights.",
+        "Camera.",
+        "Khachaak.",
+
+        "Stealth Era.",
+
+        "Every Frame Matters."
+
+    ];
+
+    let current=0;
+
+    setInterval(()=>{
+
+        heroSubtitle.classList.add("fade");
+
+        setTimeout(()=>{
+
+            current=(current+1)%subtitles.length;
+
+            heroSubtitle.textContent=subtitles[current];
+
+            heroSubtitle.classList.remove("fade");
+
+        },450);
+
+    },3200);
+
+}
+
+/* =========================================
+   CAMERA FOCUS
+========================================= */
+
+const hero = document.querySelector(".hero");
+
+if(hero){
+
+    setInterval(()=>{
+
+        hero.classList.add("hero-focus");
+
+        setTimeout(()=>{
+
+            hero.classList.remove("hero-focus");
+
+        },450);
+
+    },10000);
+
+}
