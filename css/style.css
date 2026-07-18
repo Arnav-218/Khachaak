@@ -393,6 +393,27 @@ nav ul li a:hover{
     background-position:center;
 
     background-repeat:no-repeat;
+
+   overflow:hidden;
+
+   position:relative;
+}
+
+.hero .vignette{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        radial-gradient(circle,
+        transparent 45%,
+        rgba(0,0,0,.55) 100%);
+
+    pointer-events:none;
+
+    z-index:3;
 }
 
 .hero::before{
@@ -401,25 +422,31 @@ nav ul li a:hover{
 
     position:absolute;
 
-    top:-50%;
-
-    left:-50%;
-
-    width:200%;
-
-    height:200%;
+    inset:-30%;
 
     background:
-    linear-gradient(
-        115deg,
-        transparent 20%,
-        rgba(199,154,118,.18) 50%,
-        transparent 80%
-    );
 
-    animation:beam1 12s linear infinite;
+        radial-gradient(circle at 20% 30%,
+        rgba(199,154,118,.18) 0%,
+        transparent 28%),
 
-    z-index:2;
+        radial-gradient(circle at 80% 20%,
+        rgba(199,154,118,.12) 0%,
+        transparent 30%),
+
+        radial-gradient(circle at 70% 80%,
+        rgba(199,154,118,.14) 0%,
+        transparent 35%),
+
+        radial-gradient(circle at 15% 75%,
+        rgba(255,255,255,.03) 0%,
+        transparent 25%);
+
+    animation:meshMove 22s ease-in-out infinite alternate;
+
+    filter:blur(80px);
+
+    z-index:1;
 
     pointer-events:none;
 }
@@ -430,23 +457,21 @@ nav ul li a:hover{
 
     position:absolute;
 
-    top:-50%;
+    inset:0;
 
-    left:-50%;
+    background-image:
 
-    width:200%;
+        radial-gradient(circle,
+        rgba(255,255,255,.05) 1px,
+        transparent 1px);
 
-    height:200%;
+    background-size:4px 4px;
 
-    background:
-    linear-gradient(
-        65deg,
-        transparent 25%,
-        rgba(199,154,118,.14) 50%,
-        transparent 75%
-    );
+    opacity:.12;
 
-    animation:beam2 15s linear infinite;
+    mix-blend-mode:soft-light;
+
+    animation:grain 0.35s steps(8) infinite;
 
     z-index:2;
 
@@ -550,26 +575,69 @@ nav ul li a:hover{
     }
 }
 
-@keyframes beam1{
+@keyframes meshMove{
 
-    from{
-        transform:translateX(-15%) rotate(0deg);
+    0%{
+
+        transform:
+        translate(0,0)
+        rotate(0deg)
+        scale(1);
+
     }
 
-    to{
-        transform:translateX(15%) rotate(0deg);
+    50%{
+
+        transform:
+        translate(-3%,2%)
+        rotate(2deg)
+        scale(1.08);
+
     }
+
+    100%{
+
+        transform:
+        translate(3%,-2%)
+        rotate(-2deg)
+        scale(1.05);
+
+    }
+
 }
 
-@keyframes beam2{
+@keyframes grain{
 
-    from{
-        transform:translateX(15%) rotate(0deg);
+    0%{
+
+        transform:translate(0,0);
+
     }
 
-    to{
-        transform:translateX(-15%) rotate(0deg);
+    25%{
+
+        transform:translate(-2px,1px);
+
     }
+
+    50%{
+
+        transform:translate(2px,-1px);
+
+    }
+
+    75%{
+
+        transform:translate(-1px,2px);
+
+    }
+
+    100%{
+
+        transform:translate(0,0);
+
+    }
+
 }
 
 /* =========================================
