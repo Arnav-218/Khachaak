@@ -475,6 +475,8 @@ nav ul li a:hover{
     pointer-events:none;
 }
 
+
+
 .hero-content{
 
     position:relative;
@@ -566,28 +568,24 @@ nav ul li a:hover{
 }
 
 .hero-focus{
-
-    animation:cameraFocus .45s ease;
+    animation:cameraFocus .55s ease;
 }
 
 @keyframes cameraFocus{
 
     0%{
-
-        filter:blur(0px);
-
+        background-size:100%;
+        filter:brightness(1);
     }
 
-    35%{
-
-        filter:blur(3px);
-
+    40%{
+        background-size:103%;
+        filter:brightness(.9);
     }
 
     100%{
-
-        filter:blur(0px);
-
+        background-size:100%;
+        filter:brightness(1);
     }
 
 }
