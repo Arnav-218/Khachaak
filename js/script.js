@@ -363,32 +363,6 @@ if (lightbox) {
 }
 
 /* =========================================
-   FEATURED STORIES
-========================================= */
-
-const stories = document.querySelectorAll(".story-card");
-
-stories.forEach(card => {
-
-    card.addEventListener("click", () => {
-
-        stories.forEach(item => {
-
-            if(item !== card){
-
-                item.classList.remove("active");
-            }
-
-        });
-
-        card.classList.toggle("active");
-
-    });
-
-});
-
-
-/* =========================================
    ACTIVE NAV LINK
 ========================================= */
 
