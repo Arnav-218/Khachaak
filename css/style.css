@@ -1883,8 +1883,32 @@ footer a:hover{
 
     .story-card{
 
-        height:420px;
+        height:auto;
     }
+
+   .story-card img{
+
+    aspect-ratio:4/5;
+
+    object-fit:cover;
+}
+
+.story-info{
+
+    padding:18px;
+}
+
+.story-info h3{
+
+    font-size:1.7rem;
+}
+
+.story-info p{
+
+    font-size:.9rem;
+
+    line-height:1.6;
+}
 
     .month-card img{
 
