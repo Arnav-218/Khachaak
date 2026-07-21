@@ -1730,7 +1730,11 @@ footer a:hover{
 
     align-items:center;
 
-    gap:32px;
+    gap:20px;
+
+    padding:80px 20px;
+
+    overflow-y:auto;
 
     z-index:6000;
 
@@ -1752,7 +1756,7 @@ footer a:hover{
 
     font-family:'Bebas Neue',sans-serif;
 
-    font-size:2.2rem;
+    font-size:1.8rem;
 
     letter-spacing:2px;
 
@@ -1772,9 +1776,9 @@ footer a:hover{
 
     position:absolute;
 
-    top:30px;
+    top:20px;
 
-    right:30px;
+    right:20px;
 
     background:none;
 
@@ -1782,7 +1786,7 @@ footer a:hover{
 
     color:var(--white);
 
-    font-size:3rem;
+    font-size:2.8rem;
 
     cursor:pointer;
 
@@ -1795,6 +1799,16 @@ footer a:hover{
 
     transform:rotate(90deg);
 }
+
+.mobile-menu-logo{
+
+    width:90px;
+
+    margin-bottom:20px;
+
+    opacity:.95;
+}
+
 /* =========================================
    TABLET
 ========================================= */
