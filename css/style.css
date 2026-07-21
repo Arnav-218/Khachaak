@@ -1712,17 +1712,15 @@ footer a:hover{
 
     position:fixed;
 
-    top:0;
+    inset:0;
 
-    right:-100%;
-
-    width:280px;
+    width:100%;
 
     height:100vh;
 
-    background:#050505;
+    background:rgba(5,5,5,.98);
 
-    z-index:6000;
+    backdrop-filter:blur(18px);
 
     display:flex;
 
@@ -1730,28 +1728,73 @@ footer a:hover{
 
     justify-content:center;
 
-    gap:30px;
+    align-items:center;
 
-    padding:40px;
+    gap:32px;
 
-    transition:.5s ease;
+    z-index:6000;
 
-   box-shadow:
-    -10px 0 40px rgba(0,0,0,.5);
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.4s ease;
 }
 
 .mobile-menu.active{
 
-    right:0;
+    opacity:1;
+
+    visibility:visible;
 }
 
 .mobile-menu a{
 
-    font-size:1.1rem;
+    font-family:'Bebas Neue',sans-serif;
 
-    color:white;
+    font-size:2.2rem;
+
+    letter-spacing:2px;
+
+    color:var(--white);
+
+    transition:.3s ease;
 }
 
+.mobile-menu a:hover{
+
+    color:var(--bronze);
+
+    transform:translateY(-2px);
+}
+
+.close-menu{
+
+    position:absolute;
+
+    top:30px;
+
+    right:30px;
+
+    background:none;
+
+    border:none;
+
+    color:var(--white);
+
+    font-size:3rem;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+}
+
+.close-menu:hover{
+
+    color:var(--bronze);
+
+    transform:rotate(90deg);
+}
 /* =========================================
    TABLET
 ========================================= */
