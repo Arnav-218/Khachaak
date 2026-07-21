@@ -44,23 +44,43 @@ window.addEventListener("scroll", () => {
 
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
+const closeMenu = document.querySelector(".close-menu");
 
-if (hamburger && mobileMenu) {
+if(hamburger && mobileMenu){
 
-    hamburger.addEventListener("click", () => {
+    hamburger.addEventListener("click",()=>{
 
-        mobileMenu.classList.toggle("active");
-    });
+        mobileMenu.classList.add("active");
 
-    document.querySelectorAll(".mobile-menu a").forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            mobileMenu.classList.remove("active");
-        });
+        document.body.style.overflow="hidden";
 
     });
+
 }
+
+if(closeMenu){
+
+    closeMenu.addEventListener("click",()=>{
+
+        mobileMenu.classList.remove("active");
+
+        document.body.style.overflow="";
+
+    });
+
+}
+
+document.querySelectorAll(".mobile-menu a").forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        mobileMenu.classList.remove("active");
+
+        document.body.style.overflow="";
+
+    });
+
+});
 
 
 /* =========================================
