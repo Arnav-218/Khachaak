@@ -1093,7 +1093,11 @@ nav ul li a:hover{
 
     border-radius:14px;
 
-    overflow:hidden;
+    padding:14px;
+
+    background:#111;
+
+    border-radius:16px;
 
     transition:.35s ease;
 }
@@ -1109,6 +1113,26 @@ nav ul li a:hover{
     display:block;
 
     transition:.8s ease;
+
+   border-radius:12px;
+}
+
+/* #1 Porsche */
+.month-card:nth-child(1) img{
+
+    object-position:center center;
+}
+
+/* #2 Rider */
+.month-card:nth-child(2) img{
+
+    object-position:55% 25%;
+}
+
+/* #3 Royal Enfield */
+.month-card:nth-child(3) img{
+
+    object-position:65% center;
 }
 
 .month-card span{
