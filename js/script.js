@@ -170,71 +170,126 @@ filterButtons.forEach(button => {
     button.addEventListener("click", () => {
 
         filterButtons.forEach(btn => {
+
             btn.classList.remove("active");
+
         });
 
         button.classList.add("active");
 
         const filter =
-    button.textContent
-    .toLowerCase()
-    .replace(/\s+/g, "-");
+            button.textContent
+            .toLowerCase()
+            .replace(/\s+/g,"-");
+
+        const isMobile = window.innerWidth <= 768;
 
         galleryItems.forEach(item => {
 
+            /* gallery.html */
             if(isFullGallery){
-
-                /* gallery.html behaviour */
 
                 if(filter === "all"){
 
                     item.style.display = "block";
+
                 }
 
                 else{
 
-                    if(item.classList.contains(filter)){
+                    item.style.display =
+                        item.classList.contains(filter)
+                        ? "block"
+                        : "none";
+
+                }
+
+            }
+
+            /* homepage */
+            else{
+
+                /* Mobile → hide non-matching */
+                if(isMobile){
+
+                    if(filter === "all"){
 
                         item.style.display = "block";
+
                     }
 
                     else{
 
-                        item.style.display = "none";
+                        item.style.display =
+                            item.classList.contains(filter)
+                            ? "block"
+                            : "none";
+
                     }
+
                 }
 
-            }else{
-
-                /* homepage behaviour */
-
-                if(filter === "all"){
-
-                    item.classList.remove("dimmed");
-                    item.classList.remove("active-filter");
-                }
-
+                /* Desktop → fade non-matching */
                 else{
 
-                    if(item.classList.contains(filter)){
+                    item.style.display = "block";
+
+                    if(filter === "all"){
 
                         item.classList.remove("dimmed");
-                        item.classList.add("active-filter");
+                        item.classList.remove("active-filter");
+
                     }
 
                     else{
 
-                        item.classList.remove("active-filter");
-                        item.classList.add("dimmed");
+                        if(item.classList.contains(filter)){
+
+                            item.classList.remove("dimmed");
+                            item.classList.add("active-filter");
+
+                        }
+
+                        else{
+
+                            item.classList.remove("active-filter");
+                            item.classList.add("dimmed");
+
+                        }
+
                     }
+
                 }
+
             }
 
         });
 
+        /* Scroll to first matching image on mobile */
+        if(!isFullGallery && isMobile && filter !== "all"){
+
+            const firstMatch =
+                document.querySelector(`.gallery-item.${filter}`);
+
+            if(firstMatch){
+
+                firstMatch.scrollIntoView({
+
+                    behavior:"smooth",
+
+                    block:"start"
+
+                });
+
+            }
+
+        }
+
     });
 
 });
+
+
 
 /* =========================================
    LIGHTBOX
