@@ -224,15 +224,15 @@ section{
     width:70px;
     height:70px;
 
-    z-index:1000;
+    z-index:5500;
 
     pointer-events:none;
 }
 
 .top-left{
 
-    top:25px;
-    left:25px;
+    top:20px;
+    left:20px;
 
     border-top:2px solid var(--bronze);
     border-left:2px solid var(--bronze);
@@ -240,8 +240,8 @@ section{
 
 .top-right{
 
-    top:25px;
-    right:25px;
+    top:20px;
+    right:20px;
 
     border-top:2px solid var(--bronze);
     border-right:2px solid var(--bronze);
@@ -249,8 +249,8 @@ section{
 
 .bottom-left{
 
-    bottom:25px;
-    left:25px;
+    bottom:20px;
+    left:20px;
 
     border-bottom:2px solid var(--bronze);
     border-left:2px solid var(--bronze);
@@ -258,8 +258,8 @@ section{
 
 .bottom-right{
 
-    bottom:25px;
-    right:25px;
+    bottom:20px;
+    right:20px;
 
     border-bottom:2px solid var(--bronze);
     border-right:2px solid var(--bronze);
