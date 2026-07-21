@@ -412,9 +412,7 @@ if(heroSubtitle){
         "Create.",
         "Inspire.",
 
-        "Lights.",
-        "Camera.",
-        "Khachaak.",
+        "Lights, Cameras, Khachaak",
 
         "Stealth Era.",
 
