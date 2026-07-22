@@ -55,7 +55,7 @@ function updateHero(){
    NAVBAR TIMING
 ========================================= */
 
-if(progress > 0.32){
+if(progress > 0.20){
 
     nav.classList.add("scrolled");
     nav.classList.add("visible");
@@ -545,90 +545,85 @@ function animateHeroLogo(){
 
     const trigger = hero.offsetHeight * 0.22;
 
-const end = hero.offsetHeight * 0.72;
+    const end = hero.offsetHeight * 0.72;
 
-let progress = (window.scrollY - trigger) / (end - trigger);
+    let progress = (window.scrollY-trigger)/(end-trigger);
 
-progress = Math.max(0, Math.min(progress, 1));
-
-    const logoRect = logo.getBoundingClientRect();
-
-    const targetRect = logoTarget.getBoundingClientRect();
-
-    /* Current Center */
-
-    const currentX = logoRect.left + logoRect.width/2;
-
-    const currentY = logoRect.top + logoRect.height/2;
-
-    /* Target Center */
-
-    const targetX = targetRect.left + targetRect.width/2;
-
-    const targetY = targetRect.top + targetRect.height/2;
-
-    /* Difference */
-
-    const dx = targetX-currentX;
-
-    const dy = targetY-currentY;
-
-    const scale =
-
-        1-progress*0.84;
+    progress = Math.max(0,Math.min(progress,1));
 
     const ease =
 
-    1 - Math.pow(1 - progress,3);
+        1-Math.pow(1-progress,3);
 
-logo.style.transform=
+    /* -------------------------
+       Hero Position
+    ------------------------- */
 
-    `translate(${dx*ease}px,${dy*ease}px)
-     scale(${1 - ease*0.84})`;
+    const startX = hero.offsetWidth * 0.07;
 
-    logo.style.filter=
+const startY = window.innerHeight * 0.50;
+
+    /* -------------------------
+       Navbar Position
+    ------------------------- */
+
+    const target = logoTarget.getBoundingClientRect();
+
+    const endX = target.left + target.width/2;
+
+    const endY = target.top + target.height/2 - window.scrollY;
+
+    /* -------------------------
+       Interpolation
+    ------------------------- */
+
+    const x =
+
+        startX + (endX-startX)*ease;
+
+    const y =
+
+        startY + (endY-startY)*ease;
+
+    logo.style.left = `${x}px`;
+
+    logo.style.top = `${y}px`;
+
+    /* -------------------------
+       Scale
+    ------------------------- */
+
+    const scale =
+
+        1-(ease*0.84);
+
+    logo.style.transform =
+
+        `translate(-50%,-50%)
+         scale(${scale})`;
+
+    /* -------------------------
+       Shadow
+    ------------------------- */
+
+    const shadowY =
+
+        28-(ease*22);
+
+    const blur =
+
+        56-(ease*40);
+
+    logo.style.filter =
 
         `drop-shadow(
-            0 ${24-progress*12}px
-            ${46-progress*18}px
+            0 ${shadowY}px ${blur}px
             rgba(0,0,0,.42)
         )
         drop-shadow(
-            0 0 ${24-progress*10}px
-            rgba(199,154,118,.16)
+            0 0 ${26-ease*16}px
+            rgba(199,154,118,.18)
         )`;
-
-}
-
-    /* Navbar */
-
-    if(progress>.80){
-
-        nav.classList.add("hero-complete");
-
-        navItems.forEach((item,index)=>{
-
-            item.classList.add("show");
-
-            item.style.transitionDelay=`${index*60}ms`;
-
-        });
-
-    }
-
-    else{
-
-        nav.classList.remove("hero-complete");
-
-        navItems.forEach(item=>{
-
-            item.classList.remove("show");
-
-            item.style.transitionDelay="0ms";
-
-        });
-
-    }
 
 }
 
