@@ -537,86 +537,76 @@ function animateHeroLogo(){
 
     if(!logo || !logoTarget) return;
 
-    const heroHeight = hero.offsetHeight;
+    const heroRect = hero.getBoundingClientRect();
+    const targetRect = logoTarget.getBoundingClientRect();
 
-    const progress = Math.min(window.scrollY/heroHeight,1);
+    const progress = Math.min(window.scrollY / hero.offsetHeight,1);
 
-    const start = {
+    /* Starting Position */
 
-        x:window.innerWidth*0.07,
+    const startX = hero.offsetWidth * 0.07;
 
-        y:window.innerHeight*0.5
+    const startY = hero.offsetHeight * 0.50;
 
-    };
+    /* Target Position */
 
-    const target = logoTarget.getBoundingClientRect();
+    const endX = targetRect.left + targetRect.width/2;
 
-    const end = {
+    const endY = targetRect.top + targetRect.height/2;
 
-        x:target.left,
+    /* Interpolation */
 
-        y:target.top+10
+    const x = startX + (endX-startX)*progress;
 
-    };
-
-    const currentX =
-
-        start.x + (end.x-start.x)*progress;
-
-    const currentY =
-
-        start.y + (end.y-start.y)*progress;
+    const y = startY + (endY-startY)*progress;
 
     const scale =
 
-        1-progress*0.84;
+        1-(progress*0.84);
 
     const rotate =
 
-        progress*0.35;
+        progress*0.25;
 
-    logo.style.left=currentX+"px";
+    logo.style.left = `${x}px`;
 
-    logo.style.top=currentY+"px";
+    logo.style.top = `${y}px`;
 
-    logo.style.transform=
+    logo.style.transform =
 
-        `translateY(-50%)
+        `translate(-50%,-50%)
          scale(${scale})
          rotate(${rotate}deg)`;
 
-    logo.style.filter=
+    logo.style.filter =
 
         `drop-shadow(
-            0 ${25-progress*15}px
-            ${50-progress*20}px
+            0 ${24-progress*14}px
+            ${48-progress*22}px
             rgba(0,0,0,.45)
         )
         drop-shadow(
-            0 0
-            ${25-progress*15}px
-            rgba(199,154,118,.15)
+            0 0 ${26-progress*12}px
+            rgba(199,154,118,.18)
         )`;
 
-    if(progress>.82 && !logoAnimated){
+    /* Navbar */
+
+    if(progress>.80){
 
         nav.classList.add("hero-complete");
 
         navItems.forEach((item,index)=>{
 
-            item.style.transitionDelay=
-
-                `${index*60}ms`;
-
             item.classList.add("show");
+
+            item.style.transitionDelay=`${index*60}ms`;
 
         });
 
-        logoAnimated=true;
-
     }
 
-    if(progress<.82 && logoAnimated){
+    else{
 
         nav.classList.remove("hero-complete");
 
@@ -628,24 +618,9 @@ function animateHeroLogo(){
 
         });
 
-        logoAnimated=false;
-
     }
 
 }
-
-window.addEventListener("scroll",()=>{
-
-    updateNavigation();
-
-    animateHeroLogo();
-
-},{passive:true});
-
-updateNavigation();
-
-animateHeroLogo();
-
 
 /* =========================================
    HERO SUBTITLE
@@ -745,3 +720,31 @@ function triggerFocus(){
 setInterval(triggerFocus,6500);
 
 setTimeout(triggerFocus,1200);
+
+/* =========================================
+   HERO PARALLAX
+========================================= */
+
+let mouseX = 0;
+let mouseY = 0;
+
+window.addEventListener("mousemove",(e)=>{
+
+    mouseX = (e.clientX/window.innerWidth-.5)*20;
+
+    mouseY = (e.clientY/window.innerHeight-.5)*20;
+
+});
+
+function heroParallax(){
+
+    heroBg.style.transform =
+
+        `translate(${mouseX}px,${mouseY}px)
+         scale(1.04)`;
+
+    requestAnimationFrame(heroParallax);
+
+}
+
+heroParallax();
