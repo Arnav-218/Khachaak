@@ -298,6 +298,12 @@ nav{
 
     z-index:5000;
 
+   opacity:0;
+
+visibility:hidden;
+
+transform:translateY(-30px);
+
     transition:all .4s ease;
 }
 
@@ -310,6 +316,16 @@ nav.scrolled{
     backdrop-filter:blur(15px);
 
     border-bottom:1px solid rgba(199,154,118,.25);
+}
+
+nav.visible{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
 }
 
 /* =========================================
