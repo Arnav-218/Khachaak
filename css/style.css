@@ -119,26 +119,36 @@ section{
 
 .btn{
 
-    display:inline-block;
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
 
     padding:14px 34px;
 
+    background:var(--bronze);
+
     border:1px solid var(--bronze);
 
-    color:var(--white);
+    color:#050505;
 
-    transition:var(--transition);
+    font-weight:600;
 
     letter-spacing:1px;
+
+    transition:all .35s ease;
 }
 
 .btn:hover{
 
-    background:var(--bronze);
+    background:transparent;
 
-    color:#050505;
+    color:var(--bronze);
 
     transform:translateY(-3px);
+
+    box-shadow:0 8px 24px rgba(199,154,118,.18);
 }
 
 /* =========================================
@@ -302,9 +312,31 @@ nav.scrolled{
     border-bottom:1px solid rgba(199,154,118,.25);
 }
 
+/* =========================================
+   LOGO
+========================================= */
+
+.logo{
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+}
+
+nav.scrolled .logo{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
 .logo img{
 
-    width:100px;
+    width:95px;
 
     height:auto;
 
@@ -318,11 +350,30 @@ nav.scrolled .logo img{
     width:75px;
 }
 
+/* =========================================
+   NAV LINKS
+========================================= */
+
 nav ul{
 
     display:flex;
 
     gap:26px;
+
+    opacity:0;
+
+    transform:translateY(-10px);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+}
+
+nav.scrolled ul{
+
+    opacity:1;
+
+    transform:translateY(0);
 }
 
 nav ul li a{
@@ -589,7 +640,7 @@ nav ul li a:hover{
 
     font-family:'Cormorant Garamond',serif;
 
-    font-size:clamp(5rem,9vw,8rem);
+    font-size:clamp(6rem,10vw,9rem);
 
     font-weight:500;
 
@@ -604,7 +655,7 @@ nav ul li a:hover{
 
     font-family:'Bebas Neue',sans-serif;
 
-    font-size:2rem;
+    font-size:2.4rem;
 
     color:var(--bronze);
 
@@ -672,7 +723,7 @@ nav ul li a:hover{
 
     gap:18px;
 
-    margin-bottom:24px;
+    margin-bottom:18px;
 }
 
 .btn-outline{
