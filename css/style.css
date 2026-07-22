@@ -597,13 +597,13 @@ nav ul li a:hover{
 
     position:absolute;
 
-    left:8%;
+    left:5%;
 
-    top:50%;
+    top:54%;
 
     transform:translateY(-50%);
 
-    width:min(480px,32vw);
+    width:min(780px,52vw);
 
     height:auto;
 
