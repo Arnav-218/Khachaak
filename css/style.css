@@ -392,6 +392,31 @@ nav ul li a:hover{
     color:var(--bronze);
 }
 
+nav ul li{
+
+    opacity:0;
+
+    transform:translateY(-15px);
+
+    transition:
+
+        opacity .45s ease,
+
+        transform .45s ease;
+}
+
+nav.hero-complete ul li.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+nav ul li.active a{
+
+    color:var(--bronze);
+}
+
 /* =========================================
    HAMBURGER
 ========================================= */
