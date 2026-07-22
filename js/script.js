@@ -543,7 +543,13 @@ function animateHeroLogo(){
 
     if(!logo || !logoTarget) return;
 
-    const progress = Math.min(window.scrollY / (hero.offsetHeight * 0.85),1);
+    const trigger = hero.offsetHeight * 0.22;
+
+const end = hero.offsetHeight * 0.72;
+
+let progress = (window.scrollY - trigger) / (end - trigger);
+
+progress = Math.max(0, Math.min(progress, 1));
 
     const logoRect = logo.getBoundingClientRect();
 
@@ -571,10 +577,14 @@ function animateHeroLogo(){
 
         1-progress*0.84;
 
-    logo.style.transform=
+    const ease =
 
-        `translate(${dx*progress}px,${dy*progress}px)
-         scale(${scale})`;
+    1 - Math.pow(1 - progress,3);
+
+logo.style.transform=
+
+    `translate(${dx*ease}px,${dy*ease}px)
+     scale(${1 - ease*0.84})`;
 
     logo.style.filter=
 
