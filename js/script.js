@@ -51,17 +51,23 @@ function updateHero(){
 
     const progress = Math.min(scroll / heroHeight,1);
 
-    if(progress > .08){
+    /* =========================================
+   NAVBAR TIMING
+========================================= */
 
-        nav.classList.add("scrolled");
+if(progress > 0.32){
 
-    }
+    nav.classList.add("scrolled");
+    nav.classList.add("visible");
 
-    else{
+}
 
-        nav.classList.remove("scrolled");
+else{
 
-    }
+    nav.classList.remove("scrolled");
+    nav.classList.remove("visible");
+
+}
 
     /* -------------------------
        Background Motion
@@ -537,58 +543,52 @@ function animateHeroLogo(){
 
     if(!logo || !logoTarget) return;
 
-    const heroRect = hero.getBoundingClientRect();
+    const progress = Math.min(window.scrollY / (hero.offsetHeight * 0.85),1);
+
+    const logoRect = logo.getBoundingClientRect();
+
     const targetRect = logoTarget.getBoundingClientRect();
 
-    const progress = Math.min(window.scrollY / hero.offsetHeight,1);
+    /* Current Center */
 
-    /* Starting Position */
+    const currentX = logoRect.left + logoRect.width/2;
 
-    const startX = hero.offsetWidth * 0.07;
+    const currentY = logoRect.top + logoRect.height/2;
 
-    const startY = hero.offsetHeight * 0.50;
+    /* Target Center */
 
-    /* Target Position */
+    const targetX = targetRect.left + targetRect.width/2;
 
-    const endX = targetRect.left + targetRect.width/2;
+    const targetY = targetRect.top + targetRect.height/2;
 
-    const endY = targetRect.top + targetRect.height/2;
+    /* Difference */
 
-    /* Interpolation */
+    const dx = targetX-currentX;
 
-    const x = startX + (endX-startX)*progress;
-
-    const y = startY + (endY-startY)*progress;
+    const dy = targetY-currentY;
 
     const scale =
 
-        1-(progress*0.84);
+        1-progress*0.84;
 
-    const rotate =
+    logo.style.transform=
 
-        progress*0.25;
+        `translate(${dx*progress}px,${dy*progress}px)
+         scale(${scale})`;
 
-    logo.style.left = `${x}px`;
-
-    logo.style.top = `${y}px`;
-
-    logo.style.transform =
-
-        `translate(-50%,-50%)
-         scale(${scale})
-         rotate(${rotate}deg)`;
-
-    logo.style.filter =
+    logo.style.filter=
 
         `drop-shadow(
-            0 ${24-progress*14}px
-            ${48-progress*22}px
-            rgba(0,0,0,.45)
+            0 ${24-progress*12}px
+            ${46-progress*18}px
+            rgba(0,0,0,.42)
         )
         drop-shadow(
-            0 0 ${26-progress*12}px
-            rgba(199,154,118,.18)
+            0 0 ${24-progress*10}px
+            rgba(199,154,118,.16)
         )`;
+
+}
 
     /* Navbar */
 
@@ -621,6 +621,12 @@ function animateHeroLogo(){
     }
 
 }
+
+window.addEventListener("scroll",animateHeroLogo,{passive:true});
+
+window.addEventListener("resize",animateHeroLogo);
+
+animateHeroLogo();
 
 /* =========================================
    HERO SUBTITLE
