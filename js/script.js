@@ -20,24 +20,123 @@ window.addEventListener("load", () => {
 
 
 /* =========================================
-   NAVBAR SCROLL
+   NAVBAR + HERO SCROLL ENGINE
 ========================================= */
 
 const nav = document.querySelector("nav");
+const hero = document.querySelector(".hero");
+const heroLogo = document.getElementById("heroLogo");
+const heroBg = document.querySelector(".hero-bg");
+const heroWrapper = document.querySelector(".hero-wrapper");
+const heroRight = document.querySelector(".hero-right");
+const heroScroll = document.querySelector(".hero-scroll");
+const logoTarget = document.querySelector(".logo-target");
 
-window.addEventListener("scroll", () => {
+const navLinks = document.querySelectorAll("nav ul li");
 
-    if(window.scrollY > 120){
+let heroHeight = hero.offsetHeight;
+let ticking = false;
+
+function updateHeroMetrics(){
+
+    heroHeight = hero.offsetHeight;
+
+}
+
+window.addEventListener("resize", updateHeroMetrics);
+
+function updateHero(){
+
+    const scroll = window.scrollY;
+
+    const progress = Math.min(scroll / heroHeight,1);
+
+    if(progress > .08){
 
         nav.classList.add("scrolled");
 
-    }else{
+    }
+
+    else{
 
         nav.classList.remove("scrolled");
 
     }
 
-});
+    /* -------------------------
+       Background Motion
+    ------------------------- */
+
+    heroBg.style.transform =
+        `scale(${1 + progress*0.08})
+         translateY(${progress*30}px)`;
+
+    /* -------------------------
+       Hero Content
+    ------------------------- */
+
+    heroRight.style.transform =
+        `translateY(${progress*-60}px)`;
+
+    heroRight.style.opacity =
+        1-progress*1.2;
+
+    /* -------------------------
+       Scroll Indicator
+    ------------------------- */
+
+    heroScroll.style.opacity =
+        1-progress*5;
+
+    heroScroll.style.transform =
+        `translate(-50%,${progress*20}px)`;
+
+    /* -------------------------
+       Logo Movement
+    ------------------------- */
+
+    if(logoTarget){
+
+        const start = heroLogo.getBoundingClientRect();
+
+        const end = logoTarget.getBoundingClientRect();
+
+        const x = (end.left-start.left)*progress;
+
+        const y = (end.top-start.top)*progress;
+
+        const scale =
+            1-progress*0.82;
+
+        heroLogo.style.transform =
+
+            `translate(${x}px,calc(-50% + ${y}px))
+             scale(${scale})
+             rotate(${progress*0.4}deg)`;
+
+    }
+
+}
+
+window.addEventListener("scroll",()=>{
+
+    if(!ticking){
+
+        requestAnimationFrame(()=>{
+
+            updateHero();
+
+            ticking=false;
+
+        });
+
+        ticking=true;
+
+    }
+
+},{passive:true});
+
+updateHero();
 
 
 /* =========================================
@@ -89,38 +188,64 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>{
    HERO SLIDESHOW
 ========================================= */
 
-const hero = document.querySelector(".hero");
+const heroImages = [
 
-if (hero) {
+    "assets/hero/hero1.webp",
+    "assets/hero/hero2.webp",
+    "assets/hero/hero3.webp",
+    "assets/hero/hero4.webp"
 
-    const heroImages = [
+];
 
-        "assets/hero/hero1.webp",
-        "assets/hero/hero2.webp",
-        "assets/hero/hero3.webp",
-        "assets/hero/hero4.webp",
-        "assets/hero/hero5.webp",
-        "assets/hero/hero6.webp"
+let heroIndex = 0;
 
-    ];
+const heroBackground = document.querySelector(".hero-bg");
 
-    let currentHero = 0;
+function changeHeroImage(){
 
-    setInterval(() => {
+    if(!heroBackground) return;
 
-        currentHero++;
+    heroBackground.style.transition =
+        "opacity .8s ease, transform 8s ease";
 
-        if (currentHero >= heroImages.length) {
+    heroBackground.style.opacity = "0";
 
-            currentHero = 0;
-        }
+    setTimeout(()=>{
 
-        hero.style.backgroundImage =
-            `url('${heroImages[currentHero]}')`;
+        heroIndex =
+            (heroIndex+1)%heroImages.length;
 
-    }, 7000);
+        heroBackground.style.backgroundImage =
+            `url("${heroImages[heroIndex]}")`;
+
+        heroBackground.style.opacity = "1";
+
+        heroBackground.style.transform =
+            "scale(1.04)";
+
+        requestAnimationFrame(()=>{
+
+            setTimeout(()=>{
+
+                heroBackground.style.transform =
+                    "scale(1)";
+
+            },50);
+
+        });
+
+    },800);
+
 }
 
+if(heroBackground){
+
+    heroBackground.style.backgroundImage =
+        `url("${heroImages[0]}")`;
+
+    setInterval(changeHeroImage,7000);
+
+}
 
 /* =========================================
    CURSOR GLOW
@@ -365,99 +490,258 @@ if (lightbox) {
 }
 
 /* =========================================
-   ACTIVE NAV LINK
+   ACTIVE NAV LINKS + HERO LOGO ANIMATION
 ========================================= */
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav ul li a");
+const sections = document.querySelectorAll("section[id]");
+const navItems = document.querySelectorAll("nav ul li");
+const logo = document.getElementById("heroLogo");
 
-window.addEventListener("scroll", () => {
+let logoAnimated = false;
 
-    let current = "";
+function updateNavigation(){
 
-    sections.forEach(section => {
+    const scroll = window.scrollY + 140;
 
-        const sectionTop =
-            section.offsetTop - 150;
+    sections.forEach(section=>{
 
-        if (pageYOffset >= sectionTop) {
+        const top = section.offsetTop;
 
-            current = section.getAttribute("id");
+        const height = section.offsetHeight;
+
+        const id = section.getAttribute("id");
+
+        if(scroll>=top && scroll<top+height){
+
+            navItems.forEach(item=>{
+
+                item.classList.remove("active");
+
+                const link = item.querySelector("a");
+
+                if(link && link.getAttribute("href")==="#"+id){
+
+                    item.classList.add("active");
+
+                }
+
+            });
+
         }
 
     });
 
-    navLinks.forEach(link => {
+}
 
-        link.classList.remove("active");
+function animateHeroLogo(){
 
-        if (link.getAttribute("href") === `#${current}`) {
+    if(!logo || !logoTarget) return;
 
-            link.classList.add("active");
-        }
+    const heroHeight = hero.offsetHeight;
 
-    });
+    const progress = Math.min(window.scrollY/heroHeight,1);
 
-});
+    const start = {
+
+        x:window.innerWidth*0.07,
+
+        y:window.innerHeight*0.5
+
+    };
+
+    const target = logoTarget.getBoundingClientRect();
+
+    const end = {
+
+        x:target.left,
+
+        y:target.top+10
+
+    };
+
+    const currentX =
+
+        start.x + (end.x-start.x)*progress;
+
+    const currentY =
+
+        start.y + (end.y-start.y)*progress;
+
+    const scale =
+
+        1-progress*0.84;
+
+    const rotate =
+
+        progress*0.35;
+
+    logo.style.left=currentX+"px";
+
+    logo.style.top=currentY+"px";
+
+    logo.style.transform=
+
+        `translateY(-50%)
+         scale(${scale})
+         rotate(${rotate}deg)`;
+
+    logo.style.filter=
+
+        `drop-shadow(
+            0 ${25-progress*15}px
+            ${50-progress*20}px
+            rgba(0,0,0,.45)
+        )
+        drop-shadow(
+            0 0
+            ${25-progress*15}px
+            rgba(199,154,118,.15)
+        )`;
+
+    if(progress>.82 && !logoAnimated){
+
+        nav.classList.add("hero-complete");
+
+        navItems.forEach((item,index)=>{
+
+            item.style.transitionDelay=
+
+                `${index*60}ms`;
+
+            item.classList.add("show");
+
+        });
+
+        logoAnimated=true;
+
+    }
+
+    if(progress<.82 && logoAnimated){
+
+        nav.classList.remove("hero-complete");
+
+        navItems.forEach(item=>{
+
+            item.classList.remove("show");
+
+            item.style.transitionDelay="0ms";
+
+        });
+
+        logoAnimated=false;
+
+    }
+
+}
+
+window.addEventListener("scroll",()=>{
+
+    updateNavigation();
+
+    animateHeroLogo();
+
+},{passive:true});
+
+updateNavigation();
+
+animateHeroLogo();
+
 
 /* =========================================
    HERO SUBTITLE
 ========================================= */
 
-const heroSubtitle = document.getElementById("heroSubtitle");
+const subtitle = document.getElementById("heroSubtitle");
 
-if(heroSubtitle){
+const subtitleWords = [
 
-    const subtitles=[
+    "Capture.",
 
-        "Capture.",
-        "Create.",
-        "Inspire.",
+    "Create.",
 
-        "Lights, Cameras, Khachaak",
+    "Observe.",
 
-        "Stealth Era.",
+    "Compose.",
 
-        "Every Frame Matters."
+    "Lights. Cameras. Khachaak.",
 
-    ];
+    "Stealth Era."
 
-    let current=0;
+];
 
-    setInterval(()=>{
+let subtitleIndex = 0;
 
-        heroSubtitle.classList.add("fade");
+function rotateSubtitle(){
 
-        setTimeout(()=>{
+    if(!subtitle) return;
 
-            current=(current+1)%subtitles.length;
+    subtitle.classList.add("fade");
 
-            heroSubtitle.textContent=subtitles[current];
+    setTimeout(()=>{
 
-            heroSubtitle.classList.remove("fade");
+        subtitleIndex =
+            (subtitleIndex + 1) % subtitleWords.length;
 
-        },450);
+        subtitle.textContent =
+            subtitleWords[subtitleIndex];
 
-    },3200);
+        subtitle.classList.remove("fade");
+
+    },250);
 
 }
+
+setInterval(rotateSubtitle,3200);
+
 
 /* =========================================
    CAMERA FOCUS
 ========================================= */
 
-if(hero){
+const focusBox = document.querySelector(".hero-focus-box");
 
-    setInterval(()=>{
+function triggerFocus(){
 
-        hero.classList.add("hero-focus");
+    if(!focusBox) return;
 
-        setTimeout(()=>{
+    focusBox.animate([
 
-            hero.classList.remove("hero-focus");
+        {
 
-        },450);
+            opacity:0,
 
-    },10000);
+            transform:"translate(-50%,-50%) scale(1.35)"
+
+        },
+
+        {
+
+            opacity:1,
+
+            transform:"translate(-50%,-50%) scale(.94)",
+
+            offset:.45
+
+        },
+
+        {
+
+            opacity:0,
+
+            transform:"translate(-50%,-50%) scale(1)"
+
+        }
+
+    ],{
+
+        duration:700,
+
+        easing:"cubic-bezier(.22,.61,.36,1)"
+
+    });
 
 }
+
+setInterval(triggerFocus,6500);
+
+setTimeout(triggerFocus,1200);
