@@ -313,69 +313,6 @@ nav.scrolled{
 }
 
 /* =========================================
-   FLOATING HERO LOGO
-========================================= */
-
-.floating-logo{
-
-    position:fixed;
-
-    left:3%;
-
-    top:50%;
-
-    transform:translateY(-50%);
-
-    z-index:5500;
-
-    transition:
-
-        left .8s ease,
-
-        top .8s ease,
-
-        width .8s ease,
-
-        transform .8s ease,
-
-        opacity .5s ease;
-}
-
-.floating-logo img{
-
-    width:min(680px,46vw);
-
-    height:auto;
-
-    display:block;
-
-    filter:drop-shadow(0 0 35px rgba(199,154,118,.18));
-
-    transition:inherit;
-}
-
-body.hero-collapsed .floating-logo{
-
-    left:8%;
-
-    top:18px;
-
-    transform:none;
-}
-
-body.hero-collapsed .floating-logo img{
-
-    width:75px;
-}
-
-body.hero-collapsed nav ul{
-
-    opacity:1;
-
-    transform:translateY(0);
-}
-
-/* =========================================
    LOGO
 ========================================= */
 
