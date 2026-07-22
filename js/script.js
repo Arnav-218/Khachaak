@@ -27,14 +27,20 @@ const nav = document.querySelector("nav");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 50) {
+    if(window.scrollY > 120){
 
         nav.classList.add("scrolled");
 
-    } else {
+        document.body.classList.add("hero-collapsed");
+
+    }else{
 
         nav.classList.remove("scrolled");
+
+        document.body.classList.remove("hero-collapsed");
+
     }
+
 });
 
 
