@@ -31,13 +31,9 @@ window.addEventListener("scroll", () => {
 
         nav.classList.add("scrolled");
 
-        document.body.classList.add("hero-collapsed");
-
     }else{
 
         nav.classList.remove("scrolled");
-
-        document.body.classList.remove("hero-collapsed");
 
     }
 
