@@ -288,7 +288,7 @@ nav{
 
     width:100%;
 
-    padding:20px 8%;
+    padding:18px 8%;
 
     display:flex;
 
@@ -298,24 +298,29 @@ nav{
 
     z-index:5000;
 
-   opacity:0;
+    opacity:1;
 
-visibility:hidden;
+    visibility:visible;
 
-transform:translateY(-30px);
+    transform:translateY(0);
 
-    transition:all .4s ease;
+    background:transparent;
+
+    border-bottom:1px solid transparent;
+
+    transition:padding .35s cubic-bezier(0.16, 1, 0.3, 1), background .35s cubic-bezier(0.16, 1, 0.3, 1), border-color .35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter .35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 nav.scrolled{
 
-    padding:10px 8%;
+    padding:12px 8%;
 
-    background:rgba(5,5,5,.75);
+    background:rgba(5,5,5,.85);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
 
-    border-bottom:1px solid rgba(199,154,118,.25);
+    border-bottom:1px solid rgba(199,154,118,.2);
 }
 
 nav.visible{
@@ -325,45 +330,72 @@ nav.visible{
     visibility:visible;
 
     transform:translateY(0);
-
 }
 
 /* =========================================
    LOGO
 ========================================= */
 
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    min-width:90px;
+
+    height:45px;
+}
+
+.logo-target{
+
+    width:75px;
+
+    height:45px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    pointer-events:none;
+}
+
 .logo{
 
-    opacity:0;
+    opacity:1;
 
-    transform:translateY(-15px);
+    transform:none;
 
-    transition:
-        opacity .5s ease,
-        transform .5s ease;
+    display:flex;
+
+    align-items:center;
 }
 
 nav.scrolled .logo{
 
     opacity:1;
 
-    transform:translateY(0);
+    transform:none;
 }
 
 .logo img{
 
-    width:95px;
+    width:85px;
 
     height:auto;
 
     object-fit:contain;
 
-    transition:all .4s ease;
+    transition:width .35s ease;
 }
 
 nav.scrolled .logo img{
 
-    width:75px;
+    width:70px;
 }
 
 /* =========================================
@@ -376,56 +408,49 @@ nav ul{
 
     gap:26px;
 
-    opacity:0;
+    align-items:center;
 
-    transform:translateY(-10px);
+    opacity:1;
 
-    transition:
-        opacity .5s ease,
-        transform .5s ease;
+    transform:none;
 }
 
 nav.scrolled ul{
 
     opacity:1;
 
-    transform:translateY(0);
+    transform:none;
+}
+
+nav ul li{
+
+    opacity:1;
+
+    transform:none;
+
+    list-style:none;
 }
 
 nav ul li a{
 
     color:var(--white);
 
-    transition:var(--transition);
+    transition:color .3s ease, text-shadow .3s ease;
 
     font-size:.95rem;
 
+    font-weight:500;
+
     letter-spacing:.5px;
+
+    position:relative;
 }
 
 nav ul li a:hover{
 
     color:var(--bronze);
-}
 
-nav ul li{
-
-    opacity:0;
-
-    transform:translateY(-15px);
-
-    transition:
-
-        opacity .45s ease,
-
-        transform .45s ease;
-}
-
-nav.hero-complete ul li.show{
-
-    opacity:1;
-
-    transform:translateY(0);
+    text-shadow:0 0 10px rgba(199,154,118,0.35);
 }
 
 nav ul li.active a{
@@ -2532,100 +2557,34 @@ footer a:hover{
     }
 
   /* =========================================
-   NAVBAR
+   NAVBAR (MOBILE OVERRIDES)
 ========================================= */
 
 nav{
 
-    position:fixed;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:86px;
-
-    padding:0 7%;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    z-index:5000;
-
-    transition:.45s ease;
+    padding:14px 5%;
 
 }
 
 nav.scrolled{
 
-    background:rgba(5,5,5,.78);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid rgba(199,154,118,.18);
+    padding:10px 5%;
 
 }
 
 .navbar-left{
 
-    width:110px;
+    min-width:70px;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-start;
+    height:40px;
 
 }
 
 .logo-target{
 
-    width:78px;
+    width:58px;
 
-    height:78px;
-
-}
-
-nav ul{
-
-    display:flex;
-
-    gap:28px;
-
-    align-items:center;
-
-}
-
-nav ul li{
-
-    list-style:none;
-
-}
-
-nav ul li a{
-
-    color:#fff;
-
-    font-size:.95rem;
-
-    transition:.3s;
-
-}
-
-nav ul li a:hover{
-
-    color:var(--bronze);
-
-}
-
-nav ul li.active a{
-
-    color:var(--bronze);
+    height:38px;
 
 }
    
