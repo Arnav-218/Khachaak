@@ -26,121 +26,113 @@ window.addEventListener("load", () => {
 const nav = document.querySelector("nav");
 const hero = document.querySelector(".hero");
 const heroLogo = document.getElementById("heroLogo");
+const logoTarget = document.querySelector(".logo-target");
+const logoSlot = document.querySelector(".logo-slot");
+
 const heroBg = document.querySelector(".hero-bg");
 const heroWrapper = document.querySelector(".hero-wrapper");
 const heroRight = document.querySelector(".hero-right");
 const heroScroll = document.querySelector(".hero-scroll");
-const logoTarget = document.querySelector(".logo-target");
 
 const navLinks = document.querySelectorAll("nav ul li");
 
-let heroHeight = hero.offsetHeight;
+const isHeroPage = !!(hero && heroLogo && logoTarget && logoSlot);
+
+if (!isHeroPage && nav) {
+    nav.classList.add("visible", "scrolled");
+}
+
 let ticking = false;
 
-function updateHeroMetrics(){
+function updateHero() {
+    if (!isHeroPage) return;
 
-    heroHeight = hero.offsetHeight;
+    const scrollY = window.scrollY;
+    const heroHeight = hero.offsetHeight || window.innerHeight;
 
-}
+    const animStart = 0;
+    const animEnd = Math.min(300, heroHeight * 0.45);
 
-window.addEventListener("resize", updateHeroMetrics);
-
-function updateHero(){
-
-    const scroll = window.scrollY;
-
-    const progress = Math.min(scroll / heroHeight,1);
-
-    /* =========================================
-   NAVBAR TIMING
-========================================= */
-
-if(progress > 0.20){
-
-    nav.classList.add("scrolled");
-    nav.classList.add("visible");
-
-}
-
-else{
-
-    nav.classList.remove("scrolled");
-    nav.classList.remove("visible");
-
-}
+    let progress = Math.max(0, Math.min((scrollY - animStart) / (animEnd - animStart), 1));
+    const ease = 1 - Math.pow(1 - progress, 3);
 
     /* -------------------------
-       Background Motion
+       Navbar Reveal
     ------------------------- */
-
-    heroBg.style.transform =
-        `scale(${1 + progress*0.08})
-         translateY(${progress*30}px)`;
-
-    /* -------------------------
-       Hero Content
-    ------------------------- */
-
-    heroRight.style.transform =
-        `translateY(${progress*-60}px)`;
-
-    heroRight.style.opacity =
-        1-progress*1.2;
-
-    /* -------------------------
-       Scroll Indicator
-    ------------------------- */
-
-    heroScroll.style.opacity =
-        1-progress*5;
-
-    heroScroll.style.transform =
-        `translate(-50%,${progress*20}px)`;
-
-    /* -------------------------
-       Logo Movement
-    ------------------------- */
-
-    if(logoTarget){
-
-        const start = heroLogo.getBoundingClientRect();
-
-        const end = logoTarget.getBoundingClientRect();
-
-        const x = (end.left-start.left)*progress;
-
-        const y = (end.top-start.top)*progress;
-
-        const scale =
-            1-progress*0.82;
-
-        heroLogo.style.transform =
-
-            `translate(${x}px,calc(-50% + ${y}px))
-             scale(${scale})
-             rotate(${progress*0.4}deg)`;
-
+    if (scrollY > 15) {
+        nav.classList.add("visible");
+    } else {
+        nav.classList.remove("visible");
     }
 
+    if (scrollY > 50) {
+        nav.classList.add("scrolled");
+    } else {
+        nav.classList.remove("scrolled");
+    }
+
+    /* -------------------------
+       Hero Parallax & Motion
+    ------------------------- */
+    const heroProgress = Math.min(scrollY / heroHeight, 1);
+    if (heroBg) {
+        heroBg.style.transform = `scale(${1 + heroProgress * 0.08}) translateY(${heroProgress * 30}px)`;
+    }
+
+    if (heroRight) {
+        heroRight.style.transform = `translateY(${heroProgress * -50}px)`;
+        heroRight.style.opacity = Math.max(0, 1 - heroProgress * 1.25);
+    }
+
+    if (heroScroll) {
+        heroScroll.style.opacity = Math.max(0, 1 - heroProgress * 4);
+    }
+
+    /* -------------------------
+       Logo Movement into Navbar
+    ------------------------- */
+    const slotRect = logoSlot.getBoundingClientRect();
+    const targetRect = logoTarget.getBoundingClientRect();
+
+    const startX = slotRect.left + slotRect.width / 2;
+    const startY = slotRect.top + slotRect.height / 2;
+
+    const endX = targetRect.left + targetRect.width / 2;
+    const endY = targetRect.top + targetRect.height / 2;
+
+    const currentX = startX + (endX - startX) * ease;
+    const currentY = startY + (endY - startY) * ease;
+
+    const isMobile = window.innerWidth <= 768;
+    const startWidth = Math.min(slotRect.width || (isMobile ? 210 : 440), isMobile ? 240 : 440);
+    const endWidth = isMobile ? 65 : 75;
+
+    const currentWidth = startWidth + (endWidth - startWidth) * ease;
+
+    heroLogo.style.position = "fixed";
+    heroLogo.style.left = `${currentX}px`;
+    heroLogo.style.top = `${currentY}px`;
+    heroLogo.style.width = `${currentWidth}px`;
+    heroLogo.style.height = "auto";
+    heroLogo.style.transform = "translate(-50%, -50%)";
+    heroLogo.style.zIndex = "5500";
+
+    const shadowY = 25 - ease * 18;
+    const shadowBlur = 45 - ease * 35;
+    heroLogo.style.filter = `drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,${0.45 - ease * 0.25})) drop-shadow(0 0 ${25 - ease * 18}px rgba(199,154,118,${0.15 - ease * 0.1}))`;
 }
 
-window.addEventListener("scroll",()=>{
-
-    if(!ticking){
-
-        requestAnimationFrame(()=>{
-
+window.addEventListener("scroll", () => {
+    if (!ticking) {
+        requestAnimationFrame(() => {
             updateHero();
-
-            ticking=false;
-
+            ticking = false;
         });
-
-        ticking=true;
-
+        ticking = true;
     }
+}, { passive: true });
 
-},{passive:true});
+window.addEventListener("resize", updateHero);
 
 updateHero();
 
@@ -539,99 +531,7 @@ function updateNavigation(){
 
 }
 
-function animateHeroLogo(){
 
-    if(!logo || !logoTarget) return;
-
-    const trigger = hero.offsetHeight * 0.22;
-
-    const end = hero.offsetHeight * 0.72;
-
-    let progress = (window.scrollY-trigger)/(end-trigger);
-
-    progress = Math.max(0,Math.min(progress,1));
-
-    const ease =
-
-        1-Math.pow(1-progress,3);
-
-    /* -------------------------
-       Hero Position
-    ------------------------- */
-
-    const startX = hero.offsetWidth * 0.07;
-
-const startY = window.innerHeight * 0.50;
-
-    /* -------------------------
-       Navbar Position
-    ------------------------- */
-
-    const target = logoTarget.getBoundingClientRect();
-
-    const endX = target.left + target.width/2;
-
-    const endY = target.top + target.height/2 - window.scrollY;
-
-    /* -------------------------
-       Interpolation
-    ------------------------- */
-
-    const x =
-
-        startX + (endX-startX)*ease;
-
-    const y =
-
-        startY + (endY-startY)*ease;
-
-    logo.style.left = `${x}px`;
-
-    logo.style.top = `${y}px`;
-
-    /* -------------------------
-       Scale
-    ------------------------- */
-
-    const scale =
-
-        1-(ease*0.84);
-
-    logo.style.transform =
-
-        `translate(-50%,-50%)
-         scale(${scale})`;
-
-    /* -------------------------
-       Shadow
-    ------------------------- */
-
-    const shadowY =
-
-        28-(ease*22);
-
-    const blur =
-
-        56-(ease*40);
-
-    logo.style.filter =
-
-        `drop-shadow(
-            0 ${shadowY}px ${blur}px
-            rgba(0,0,0,.42)
-        )
-        drop-shadow(
-            0 0 ${26-ease*16}px
-            rgba(199,154,118,.18)
-        )`;
-
-}
-
-window.addEventListener("scroll",animateHeroLogo,{passive:true});
-
-window.addEventListener("resize",animateHeroLogo);
-
-animateHeroLogo();
 
 /* =========================================
    HERO SUBTITLE
