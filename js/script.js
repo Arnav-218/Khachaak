@@ -26,15 +26,13 @@ window.addEventListener("load", () => {
 const nav = document.querySelector("nav");
 const hero = document.querySelector(".hero");
 const heroLogo = document.getElementById("heroLogo");
+const heroLogoLink = document.getElementById("heroLogoLink");
 const logoTarget = document.querySelector(".logo-target");
 const logoSlot = document.querySelector(".logo-slot");
 
 const heroBg = document.querySelector(".hero-bg");
-const heroWrapper = document.querySelector(".hero-wrapper");
 const heroRight = document.querySelector(".hero-right");
 const heroScroll = document.querySelector(".hero-scroll");
-
-const navLinks = document.querySelectorAll("nav ul li");
 
 const isHeroPage = !!(hero && heroLogo && logoTarget && logoSlot);
 
@@ -42,37 +40,64 @@ if (!isHeroPage && nav) {
     nav.classList.add("visible", "scrolled");
 }
 
+let slotDocX = 0;
+let slotDocY = 0;
+let slotWidth = 0;
+
+let targetViewportX = 0;
+let targetViewportY = 0;
+let targetWidth = 0;
+
+function measurePositions() {
+    if (!isHeroPage) return;
+
+    const isMobile = window.innerWidth <= 768;
+
+    // Get Target bounding box in fixed viewport space
+    const targetRect = logoTarget.getBoundingClientRect();
+    if (targetRect.width > 0 && targetRect.height > 0) {
+        targetViewportX = targetRect.left + targetRect.width / 2;
+        targetViewportY = targetRect.top + targetRect.height / 2;
+        targetWidth = targetRect.width;
+    } else {
+        targetViewportX = isMobile ? 55 : 80;
+        targetViewportY = isMobile ? 32 : 36;
+        targetWidth = isMobile ? 58 : 75;
+    }
+
+    // Get Slot bounding box in document space
+    const slotRect = logoSlot.getBoundingClientRect();
+    const currentScrollY = window.scrollY || window.pageYOffset || 0;
+    if (slotRect.width > 0 && slotRect.height > 0) {
+        slotDocX = slotRect.left + slotRect.width / 2 + window.scrollX;
+        slotDocY = slotRect.top + slotRect.height / 2 + currentScrollY;
+        slotWidth = slotRect.width;
+    } else {
+        slotDocX = window.innerWidth / 2;
+        slotDocY = isMobile ? 220 : 320;
+        slotWidth = isMobile ? 210 : 380;
+    }
+}
+
 let ticking = false;
 
 function updateHero() {
     if (!isHeroPage) return;
 
-    const scrollY = window.scrollY;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
     const heroHeight = hero.offsetHeight || window.innerHeight;
 
-    const animStart = 0;
-    const animEnd = Math.min(300, heroHeight * 0.45);
-
-    let progress = Math.max(0, Math.min((scrollY - animStart) / (animEnd - animStart), 1));
-    const ease = 1 - Math.pow(1 - progress, 3);
-
     /* -------------------------
-       Navbar Reveal
+       Navbar Glassmorphism State
     ------------------------- */
-    if (scrollY > 15) {
-        nav.classList.add("visible");
-    } else {
-        nav.classList.remove("visible");
-    }
-
-    if (scrollY > 50) {
+    if (scrollY > 30) {
         nav.classList.add("scrolled");
     } else {
         nav.classList.remove("scrolled");
     }
 
     /* -------------------------
-       Hero Parallax & Motion
+       Hero Motion Effects
     ------------------------- */
     const heroProgress = Math.min(scrollY / heroHeight, 1);
     if (heroBg) {
@@ -89,40 +114,51 @@ function updateHero() {
     }
 
     /* -------------------------
-       Logo Movement into Navbar
+       Logo Interpolation Engine
     ------------------------- */
-    const slotRect = logoSlot.getBoundingClientRect();
-    const targetRect = logoTarget.getBoundingClientRect();
+    const animEnd = Math.min(320, heroHeight * 0.45);
+    const progress = Math.max(0, Math.min(scrollY / animEnd, 1));
+    
+    // Cubic Ease-Out for ultra-smooth natural motion
+    const ease = 1 - Math.pow(1 - progress, 3);
 
-    const startX = slotRect.left + slotRect.width / 2;
-    const startY = slotRect.top + slotRect.height / 2;
+    // Document -> Viewport coordinates for slot
+    const slotViewportX = slotDocX - (window.scrollX || 0);
+    const slotViewportY = slotDocY - scrollY;
 
-    const endX = targetRect.left + targetRect.width / 2;
-    const endY = targetRect.top + targetRect.height / 2;
+    // Smoothly interpolate position and scale
+    const currentX = slotViewportX + (targetViewportX - slotViewportX) * ease;
+    const currentY = slotViewportY + (targetViewportY - slotViewportY) * ease;
+    const currentWidth = slotWidth + (targetWidth - slotWidth) * ease;
 
-    const currentX = startX + (endX - startX) * ease;
-    const currentY = startY + (endY - startY) * ease;
+    const logoElem = heroLogoLink || heroLogo;
+    if (logoElem) {
+        logoElem.style.position = "fixed";
+        logoElem.style.left = `${currentX.toFixed(2)}px`;
+        logoElem.style.top = `${currentY.toFixed(2)}px`;
+        logoElem.style.width = `${currentWidth.toFixed(2)}px`;
+        logoElem.style.height = "auto";
+        logoElem.style.transform = "translate(-50%, -50%) translateZ(0)";
+        logoElem.style.zIndex = "5500";
+        logoElem.style.willChange = "left, top, width, transform";
+    }
 
-    const isMobile = window.innerWidth <= 768;
-    const startWidth = Math.min(slotRect.width || (isMobile ? 210 : 440), isMobile ? 240 : 440);
-    const endWidth = isMobile ? 65 : 75;
+    if (heroLogo && heroLogoLink && logoElem !== heroLogo) {
+        heroLogo.style.width = "100%";
+        heroLogo.style.height = "auto";
+    }
 
-    const currentWidth = startWidth + (endWidth - startWidth) * ease;
-
-    heroLogo.style.position = "fixed";
-    heroLogo.style.left = `${currentX}px`;
-    heroLogo.style.top = `${currentY}px`;
-    heroLogo.style.width = `${currentWidth}px`;
-    heroLogo.style.height = "auto";
-    heroLogo.style.transform = "translate(-50%, -50%)";
-    heroLogo.style.zIndex = "5500";
-
-    const shadowY = 25 - ease * 18;
-    const shadowBlur = 45 - ease * 35;
-    heroLogo.style.filter = `drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,${0.45 - ease * 0.25})) drop-shadow(0 0 ${25 - ease * 18}px rgba(199,154,118,${0.15 - ease * 0.1}))`;
+    // Dynamic subtle shadow transition
+    if (heroLogo) {
+        const shadowY = Math.round(25 - ease * 18);
+        const shadowBlur = Math.round(45 - ease * 33);
+        const shadowAlpha = (0.45 - ease * 0.25).toFixed(2);
+        const glowAlpha = (0.15 - ease * 0.1).toFixed(2);
+        heroLogo.style.filter = `drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowAlpha})) drop-shadow(0 0 ${Math.round(25 - ease * 18)}px rgba(199,154,118,${glowAlpha}))`;
+    }
 }
 
-window.addEventListener("scroll", () => {
+function requestTick() {
     if (!ticking) {
         requestAnimationFrame(() => {
             updateHero();
@@ -130,10 +166,38 @@ window.addEventListener("scroll", () => {
         });
         ticking = true;
     }
-}, { passive: true });
+}
 
-window.addEventListener("resize", updateHero);
+window.addEventListener("scroll", requestTick, { passive: true });
 
+window.addEventListener("resize", () => {
+    measurePositions();
+    requestTick();
+});
+
+window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+        measurePositions();
+        requestTick();
+    }, 150);
+});
+
+// Initial measurement and trigger
+document.addEventListener("DOMContentLoaded", () => {
+    measurePositions();
+    updateHero();
+});
+
+window.addEventListener("load", () => {
+    measurePositions();
+    updateHero();
+    setTimeout(() => {
+        measurePositions();
+        updateHero();
+    }, 900);
+});
+
+measurePositions();
 updateHero();
 
 
