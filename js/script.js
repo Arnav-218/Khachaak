@@ -18,227 +18,94 @@ window.addEventListener("load", () => {
     }
 });
 
-
 /* =========================================
-   NAVBAR + HERO SCROLL ENGINE
+   HERO ENGINE
 ========================================= */
 
 const nav = document.querySelector("nav");
+
 const hero = document.querySelector(".hero");
+
 const heroLogo = document.getElementById("heroLogo");
+
 const heroLogoLink = document.getElementById("heroLogoLink");
+
 const logoTarget = document.querySelector(".logo-target");
-const logoSlot = document.querySelector(".logo-slot");
 
 const heroBg = document.querySelector(".hero-bg");
+
 const heroRight = document.querySelector(".hero-right");
+
 const heroScroll = document.querySelector(".hero-scroll");
 
-const isHeroPage = !!(hero && heroLogo && logoTarget && logoSlot);
+const isHeroPage =
+    !!(hero && heroLogo && logoTarget);
 
-if (!isHeroPage && nav) {
-    nav.classList.add("visible", "scrolled");
-}
+let heroStart = {};
 
-let slotDocX = 0;
-let slotDocY = 0;
-let slotWidth = 0;
+let heroTarget = {};
 
-let targetViewportX = 0;
-let targetViewportY = 0;
-let targetWidth = 0;
+function measureHero(){
 
-function measurePositions() {
+    if(!isHeroPage) return;
 
-    if (!isHeroPage) return;
+    const mobile = window.innerWidth <= 768;
 
-    const isMobile = window.innerWidth <= 768;
+    /* -------------------------
+       START POSITION
+    ------------------------- */
+
+    if(mobile){
+
+        heroStart = {
+
+            x: window.innerWidth / 2,
+
+            y: 130,
+
+            width: Math.min(
+                window.innerWidth * .58,
+                220
+            )
+
+        };
+
+    }
+
+    else{
+
+        heroStart = {
+
+            x: window.innerWidth * .07,
+
+            y: window.innerHeight * .50,
+
+            width: Math.min(
+                window.innerWidth * .32,
+                440
+            )
+
+        };
+
+    }
 
     /* -------------------------
        NAVBAR TARGET
     ------------------------- */
 
-    const targetRect = logoTarget.getBoundingClientRect();
+    const rect = logoTarget.getBoundingClientRect();
 
-    if (targetRect.width > 0 && targetRect.height > 0) {
+    heroTarget = {
 
-        targetViewportX = targetRect.left + targetRect.width / 2;
-        targetViewportY = targetRect.top + targetRect.height / 2;
-        targetWidth = targetRect.width;
+        x: rect.left + rect.width/2,
 
-    } else {
+        y: rect.top + rect.height/2,
 
-        targetViewportX = isMobile ? 55 : 80;
-        targetViewportY = isMobile ? 32 : 36;
-        targetWidth = isMobile ? 58 : 75;
+        width: rect.width
 
-    }
-
-    /* -------------------------
-       HERO LOGO START POSITION
-    ------------------------- */
-
-    const logoRect = heroLogo.getBoundingClientRect();
-
-    if (logoRect.width > 0 && logoRect.height > 0) {
-
-        slotDocX = logoRect.left + logoRect.width / 2;
-        slotDocY = logoRect.top + logoRect.height / 2;
-        slotWidth = logoRect.width;
-
-    } else {
-
-        if (isMobile) {
-
-            slotDocX = window.innerWidth / 2;
-            slotDocY = 130;
-            slotWidth = Math.min(220, window.innerWidth * 0.58);
-
-        } else {
-
-            slotDocX = window.innerWidth * 0.07;
-            slotDocY = window.innerHeight * 0.50;
-            slotWidth = Math.min(440, window.innerWidth * 0.32);
-
-        }
-
-    }
+    };
 
 }
-
-let ticking = false;
-
-function updateHero() {
-    if (!isHeroPage) return;
-
-    const scrollY = window.scrollY || window.pageYOffset || 0;
-    const heroHeight = hero.offsetHeight || window.innerHeight;
-
-    /* -------------------------
-       Navbar Glassmorphism State
-    ------------------------- */
-    if (scrollY > 30) {
-        nav.classList.add("scrolled");
-    } else {
-        nav.classList.remove("scrolled");
-    }
-
-    /* -------------------------
-       Hero Motion Effects
-    ------------------------- */
-    const heroProgress = Math.min(scrollY / heroHeight, 1);
-    if (heroBg) {
-        heroBg.style.transform = `scale(${1 + heroProgress * 0.08}) translateY(${heroProgress * 30}px)`;
-    }
-
-    if (heroRight) {
-        heroRight.style.transform = `translateY(${heroProgress * -50}px)`;
-        heroRight.style.opacity = Math.max(0, 1 - heroProgress * 1.25);
-    }
-
-    if (heroScroll) {
-        heroScroll.style.opacity = Math.max(0, 1 - heroProgress * 4);
-    }
-
-/* -------------------------
-   Logo Interpolation Engine
-------------------------- */
-
-const animEnd = Math.min(420, heroHeight * 0.60);
-
-const progress = Math.max(
-    0,
-    Math.min(scrollY / animEnd, 1)
-);
-
-const ease = 1 - Math.pow(1 - progress, 3);
-
-/* Hero logo is already in viewport coordinates */
-
-const currentX =
-    slotDocX + (targetViewportX - slotDocX) * ease;
-
-const currentY =
-    slotDocY + (targetViewportY - slotDocY) * ease;
-
-const currentWidth =
-    slotWidth + (targetWidth - slotWidth) * ease;
-
-heroLogo.style.left = `${currentX}px`;
-
-heroLogo.style.top = `${currentY}px`;
-
-heroLogo.style.width = `${currentWidth}px`;
-
-if (window.innerWidth <= 768) {
-
-    heroLogo.style.transform =
-        "translate(-50%,0)";
-
-} else {
-
-    heroLogo.style.transform =
-        "translate(-50%,-50%)";
-
-}
-
-const shadowY = 25 - ease * 18;
-
-const shadowBlur = 45 - ease * 33;
-
-heroLogo.style.filter =
-`
-drop-shadow(
-0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,.35)
-)
-drop-shadow(
-0 0 ${25-ease*18}px rgba(199,154,118,.12)
-)
-`;
-}
-
-function requestTick() {
-    if (!ticking) {
-        requestAnimationFrame(() => {
-            updateHero();
-            ticking = false;
-        });
-        ticking = true;
-    }
-}
-
-window.addEventListener("scroll", requestTick, { passive: true });
-
-window.addEventListener("resize", () => {
-    measurePositions();
-    requestTick();
-});
-
-window.addEventListener("orientationchange", () => {
-    setTimeout(() => {
-        measurePositions();
-        requestTick();
-    }, 150);
-});
-
-// Initial measurement and trigger
-document.addEventListener("DOMContentLoaded", () => {
-    measurePositions();
-    updateHero();
-});
-
-window.addEventListener("load", () => {
-    measurePositions();
-    updateHero();
-    setTimeout(() => {
-        measurePositions();
-        updateHero();
-    }, 900);
-});
-
-measurePositions();
-updateHero();
-
 
 /* =========================================
    MOBILE MENU
