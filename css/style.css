@@ -353,49 +353,34 @@ nav.visible{
 
     width:75px;
 
-    height:45px;
+    height:75px;
+
+    position:relative;
 
     display:flex;
 
+    justify-content:center;
+
     align-items:center;
 
-    justify-content:flex-start;
+    flex-shrink:0;
 
     pointer-events:none;
+
 }
 
-.logo{
+.logo-target img{
 
-    opacity:1;
-
-    transform:none;
-
-    display:flex;
-
-    align-items:center;
-}
-
-nav.scrolled .logo{
-
-    opacity:1;
-
-    transform:none;
-}
-
-.logo img{
-
-    width:85px;
+    width:100%;
 
     height:auto;
 
-    object-fit:contain;
+    opacity:0;
 
-    transition:width .35s ease;
-}
+    user-select:none;
 
-nav.scrolled .logo img{
+    pointer-events:none;
 
-    width:70px;
 }
 
 /* =========================================
