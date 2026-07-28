@@ -195,6 +195,7 @@ drop-shadow(
 0 0 ${25-ease*18}px rgba(199,154,118,.12)
 )
 `;
+}
 
 function requestTick() {
     if (!ticking) {
