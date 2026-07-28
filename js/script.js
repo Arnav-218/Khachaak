@@ -212,6 +212,56 @@ function updateHero(){
 
 }
 
+function requestTick(){
+
+    if(ticking) return;
+
+    ticking = true;
+
+    requestAnimationFrame(()=>{
+
+        updateHero();
+
+        ticking = false;
+
+    });
+
+}
+
+measureHero();
+
+updateHero();
+
+window.addEventListener("scroll",requestTick,{passive:true});
+
+window.addEventListener("resize",()=>{
+
+    measureHero();
+
+    updateHero();
+
+});
+
+window.addEventListener("orientationchange",()=>{
+
+    setTimeout(()=>{
+
+        measureHero();
+
+        updateHero();
+
+    },200);
+
+});
+
+window.addEventListener("load",()=>{
+
+    measureHero();
+
+    updateHero();
+
+});
+
 /* =========================================
    MOBILE MENU
 ========================================= */
