@@ -49,34 +49,61 @@ let targetViewportY = 0;
 let targetWidth = 0;
 
 function measurePositions() {
+
     if (!isHeroPage) return;
 
     const isMobile = window.innerWidth <= 768;
 
-    // Get Target bounding box in fixed viewport space
+    /* -------------------------
+       NAVBAR TARGET
+    ------------------------- */
+
     const targetRect = logoTarget.getBoundingClientRect();
+
     if (targetRect.width > 0 && targetRect.height > 0) {
+
         targetViewportX = targetRect.left + targetRect.width / 2;
         targetViewportY = targetRect.top + targetRect.height / 2;
         targetWidth = targetRect.width;
+
     } else {
+
         targetViewportX = isMobile ? 55 : 80;
         targetViewportY = isMobile ? 32 : 36;
         targetWidth = isMobile ? 58 : 75;
+
     }
 
-    // Get Slot bounding box in document space
-    const slotRect = logoSlot.getBoundingClientRect();
-    const currentScrollY = window.scrollY || window.pageYOffset || 0;
-    if (slotRect.width > 0 && slotRect.height > 0) {
-        slotDocX = slotRect.left + slotRect.width / 2 + window.scrollX;
-        slotDocY = slotRect.top + slotRect.height / 2 + currentScrollY;
-        slotWidth = slotRect.width;
+    /* -------------------------
+       HERO LOGO START POSITION
+    ------------------------- */
+
+    const logoRect = heroLogo.getBoundingClientRect();
+
+    if (logoRect.width > 0 && logoRect.height > 0) {
+
+        slotDocX = logoRect.left + logoRect.width / 2;
+        slotDocY = logoRect.top + logoRect.height / 2;
+        slotWidth = logoRect.width;
+
     } else {
-        slotDocX = window.innerWidth / 2;
-        slotDocY = isMobile ? 220 : 320;
-        slotWidth = isMobile ? 210 : 380;
+
+        if (isMobile) {
+
+            slotDocX = window.innerWidth / 2;
+            slotDocY = 130;
+            slotWidth = Math.min(220, window.innerWidth * 0.58);
+
+        } else {
+
+            slotDocX = window.innerWidth * 0.07;
+            slotDocY = window.innerHeight * 0.50;
+            slotWidth = Math.min(440, window.innerWidth * 0.32);
+
+        }
+
     }
+
 }
 
 let ticking = false;
@@ -113,50 +140,61 @@ function updateHero() {
         heroScroll.style.opacity = Math.max(0, 1 - heroProgress * 4);
     }
 
-    /* -------------------------
-       Logo Interpolation Engine
-    ------------------------- */
-    const animEnd = Math.min(320, heroHeight * 0.45);
-    const progress = Math.max(0, Math.min(scrollY / animEnd, 1));
-    
-    // Cubic Ease-Out for ultra-smooth natural motion
-    const ease = 1 - Math.pow(1 - progress, 3);
+/* -------------------------
+   Logo Interpolation Engine
+------------------------- */
 
-    // Document -> Viewport coordinates for slot
-    const slotViewportX = slotDocX - (window.scrollX || 0);
-    const slotViewportY = slotDocY - scrollY;
+const animEnd = Math.min(420, heroHeight * 0.60);
 
-    // Smoothly interpolate position and scale
-    const currentX = slotViewportX + (targetViewportX - slotViewportX) * ease;
-    const currentY = slotViewportY + (targetViewportY - slotViewportY) * ease;
-    const currentWidth = slotWidth + (targetWidth - slotWidth) * ease;
+const progress = Math.max(
+    0,
+    Math.min(scrollY / animEnd, 1)
+);
 
-    const logoElem = heroLogoLink || heroLogo;
-    if (logoElem) {
-        logoElem.style.position = "fixed";
-        logoElem.style.left = `${currentX.toFixed(2)}px`;
-        logoElem.style.top = `${currentY.toFixed(2)}px`;
-        logoElem.style.width = `${currentWidth.toFixed(2)}px`;
-        logoElem.style.height = "auto";
-        logoElem.style.transform = "translate(-50%, -50%) translateZ(0)";
-        logoElem.style.zIndex = "5500";
-        logoElem.style.willChange = "left, top, width, transform";
-    }
+const ease = 1 - Math.pow(1 - progress, 3);
 
-    if (heroLogo && heroLogoLink && logoElem !== heroLogo) {
-        heroLogo.style.width = "100%";
-        heroLogo.style.height = "auto";
-    }
+/* Hero logo is already in viewport coordinates */
 
-    // Dynamic subtle shadow transition
-    if (heroLogo) {
-        const shadowY = Math.round(25 - ease * 18);
-        const shadowBlur = Math.round(45 - ease * 33);
-        const shadowAlpha = (0.45 - ease * 0.25).toFixed(2);
-        const glowAlpha = (0.15 - ease * 0.1).toFixed(2);
-        heroLogo.style.filter = `drop-shadow(0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowAlpha})) drop-shadow(0 0 ${Math.round(25 - ease * 18)}px rgba(199,154,118,${glowAlpha}))`;
-    }
+const currentX =
+    slotDocX + (targetViewportX - slotDocX) * ease;
+
+const currentY =
+    slotDocY + (targetViewportY - slotDocY) * ease;
+
+const currentWidth =
+    slotWidth + (targetWidth - slotWidth) * ease;
+
+heroLogo.style.left = `${currentX}px`;
+
+heroLogo.style.top = `${currentY}px`;
+
+heroLogo.style.width = `${currentWidth}px`;
+
+if (window.innerWidth <= 768) {
+
+    heroLogo.style.transform =
+        "translate(-50%,0)";
+
+} else {
+
+    heroLogo.style.transform =
+        "translate(-50%,-50%)";
+
 }
+
+const shadowY = 25 - ease * 18;
+
+const shadowBlur = 45 - ease * 33;
+
+heroLogo.style.filter =
+`
+drop-shadow(
+0 ${shadowY}px ${shadowBlur}px rgba(0,0,0,.35)
+)
+drop-shadow(
+0 0 ${25-ease*18}px rgba(199,154,118,.12)
+)
+`;
 
 function requestTick() {
     if (!ticking) {
@@ -552,52 +590,6 @@ if (lightbox) {
 }
 
 /* =========================================
-   ACTIVE NAV LINKS + HERO LOGO ANIMATION
-========================================= */
-
-const sections = document.querySelectorAll("section[id]");
-const navItems = document.querySelectorAll("nav ul li");
-const logo = document.getElementById("heroLogo");
-
-let logoAnimated = false;
-
-function updateNavigation(){
-
-    const scroll = window.scrollY + 140;
-
-    sections.forEach(section=>{
-
-        const top = section.offsetTop;
-
-        const height = section.offsetHeight;
-
-        const id = section.getAttribute("id");
-
-        if(scroll>=top && scroll<top+height){
-
-            navItems.forEach(item=>{
-
-                item.classList.remove("active");
-
-                const link = item.querySelector("a");
-
-                if(link && link.getAttribute("href")==="#"+id){
-
-                    item.classList.add("active");
-
-                }
-
-            });
-
-        }
-
-    });
-
-}
-
-
-
-/* =========================================
    HERO SUBTITLE
 ========================================= */
 
@@ -710,16 +702,3 @@ window.addEventListener("mousemove",(e)=>{
     mouseY = (e.clientY/window.innerHeight-.5)*20;
 
 });
-
-function heroParallax(){
-
-    heroBg.style.transform =
-
-        `translate(${mouseX}px,${mouseY}px)
-         scale(1.04)`;
-
-    requestAnimationFrame(heroParallax);
-
-}
-
-heroParallax();
