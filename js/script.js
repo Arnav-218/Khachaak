@@ -107,6 +107,111 @@ function measureHero(){
 
 }
 
+let ticking = false;
+
+function updateHero(){
+
+    if(!isHeroPage) return;
+
+    const scroll = window.scrollY;
+
+    const heroHeight = hero.offsetHeight;
+
+    /* -------------------------
+       Progress
+    ------------------------- */
+
+    const start = heroHeight * 0.18;
+
+    const end = heroHeight * 0.60;
+
+    let progress = (scroll - start) / (end - start);
+
+    progress = Math.max(0, Math.min(progress,1));
+
+    const ease = 1 - Math.pow(1-progress,3);
+
+    /* -------------------------
+       Navbar
+    ------------------------- */
+
+    if(progress > 0){
+
+        nav.classList.add("visible");
+        nav.classList.add("scrolled");
+
+    }else{
+
+        nav.classList.remove("visible");
+        nav.classList.remove("scrolled");
+
+    }
+
+    /* -------------------------
+       Hero Content
+    ------------------------- */
+
+    if(heroRight){
+
+        heroRight.style.opacity = 1 - ease;
+
+        heroRight.style.transform =
+            `translateY(${-40*ease}px)`;
+
+    }
+
+    if(heroBg){
+
+        heroBg.style.transform =
+            `scale(${1+ease*0.06})`;
+
+    }
+
+    /* -------------------------
+       Logo
+    ------------------------- */
+
+    const x =
+        heroStart.x +
+        (heroTarget.x - heroStart.x) * ease;
+
+    const y =
+        heroStart.y +
+        (heroTarget.y - heroStart.y) * ease;
+
+    const w =
+        heroStart.width +
+        (heroTarget.width - heroStart.width) * ease;
+
+    heroLogo.style.left = `${x}px`;
+
+    heroLogo.style.top = `${y}px`;
+
+    heroLogo.style.width = `${w}px`;
+
+    if(window.innerWidth <= 768){
+
+        heroLogo.style.transform =
+            "translate(-50%,0)";
+
+    }else{
+
+        heroLogo.style.transform =
+            "translate(-50%,-50%)";
+
+    }
+
+    heroLogo.style.filter =
+
+        `drop-shadow(
+            0 ${25-18*ease}px ${45-30*ease}px rgba(0,0,0,.35)
+        )
+        drop-shadow(
+            0 0 ${25-15*ease}px rgba(199,154,118,.12)
+        )`;
+
+}
+
 /* =========================================
    MOBILE MENU
 ========================================= */
