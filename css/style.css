@@ -336,15 +336,15 @@ nav.visible{
 
     position:fixed;
 
-    left:50%;
+    left:7vw;
 
-    top:180px;
+    top:50%;
 
     width:min(440px,32vw);
 
     height:auto;
 
-    transform:translate(-50%,-50%);
+    transform:translateY(-50%);
 
     object-fit:contain;
 
