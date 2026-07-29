@@ -127,9 +127,9 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.75;
+    const start = heroHeight * 0.80;
 
-    const end = heroHeight * 1.02;
+    const end = heroHeight * 1.05;
 
     let progress = (scroll - start) / (end - start);
 
@@ -141,9 +141,9 @@ function updateHero(){
 
     /* -------------------------
        Navbar
-    -------------------------
+    ------------------------- */
 
-    if(progress > 0.2){
+    if(progress > 0.15){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
