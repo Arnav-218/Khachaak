@@ -55,7 +55,7 @@ function measureHero(){
        START POSITION
     ------------------------- */
 
-    const startMargin = 32;
+    const startMargin = 40;
 
     if(mobile){
 
@@ -68,7 +68,7 @@ function measureHero(){
 
             x: window.innerWidth / 2,
 
-            y: 170,
+            y: 190,
 
             width
 
@@ -79,8 +79,8 @@ function measureHero(){
     else{
 
         const width = Math.min(
-            window.innerWidth * .32,
-            440
+            window.innerWidth * .36,
+            500
         );
 
         heroStart = {
