@@ -68,7 +68,7 @@ function measureHero(){
 
             x: window.innerWidth / 2,
 
-            y: 130,
+            y: 170,
 
             width
 
@@ -85,7 +85,7 @@ function measureHero(){
 
         heroStart = {
 
-            x: window.innerWidth * .07,
+            x: startMargin + width / 2,
 
             y: window.innerHeight * .50,
 

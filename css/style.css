@@ -2352,17 +2352,13 @@ footer a:hover{
 
     min-height:100svh;
 
-    padding-top:180px;
+        padding-top:110px;
 
-    padding-bottom:60px;
+        padding-bottom:60px;
 
-    display:flex;
+        display:flex;
 
-    align-items:flex-start;
-}
-
-.hero-wrapper{
-
+        align-items:center;
     display:flex;
 
     flex-direction:column;
