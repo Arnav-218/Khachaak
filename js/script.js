@@ -32,6 +32,13 @@ const heroLogoLink = document.getElementById("heroLogoLink");
 
 const logoTarget = document.querySelector(".logo-target");
 
+if(heroLogoLink){
+    heroLogoLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+}
+
 const heroBg = document.querySelector(".hero-bg");
 
 const heroRight = document.querySelector(".hero-right");
