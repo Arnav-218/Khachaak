@@ -127,21 +127,23 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.20;
+    const start = heroHeight * 0.75;
 
-    const end = heroHeight * 0.98;
+    const end = heroHeight * 1.02;
 
     let progress = (scroll - start) / (end - start);
 
     progress = Math.max(0, Math.min(progress,1));
 
-    const ease = progress * progress * progress * (progress * (6 * progress - 15) + 10);
+    const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
     /* -------------------------
        Navbar
-    ------------------------- */
+    -------------------------
 
-    if(scroll > 10 || progress > 0.03){
+    if(progress > 0.2){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
@@ -204,6 +206,8 @@ function updateHero(){
         heroLogoLink.style.top = `${y - logoHeight / 2}px`;
         heroLogoLink.style.width = `${w}px`;
         heroLogoLink.style.height = `${logoHeight}px`;
+        heroLogoLink.style.cursor = "pointer";
+        heroLogoLink.style.pointerEvents = "auto";
     }
 
     heroLogo.style.filter =

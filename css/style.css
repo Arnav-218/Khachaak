@@ -396,6 +396,8 @@ nav.visible{
 
     pointer-events:none;
 
+    display:block;
+
 }
 
 nav.scrolled .logo-target img{
