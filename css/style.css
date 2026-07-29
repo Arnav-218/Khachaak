@@ -336,11 +336,11 @@ nav.visible{
 
     position:fixed;
 
-    left:9vw;
+    left:10vw;
 
     top:50%;
 
-    width:min(500px,38vw);
+    width:min(550px,40vw);
 
     height:auto;
 
