@@ -55,18 +55,22 @@ function measureHero(){
        START POSITION
     ------------------------- */
 
+    const startMargin = 32;
+
     if(mobile){
+
+        const width = Math.min(
+            window.innerWidth * .58,
+            220
+        );
 
         heroStart = {
 
-            x: window.innerWidth / 2,
+            x: startMargin + width / 2,
 
             y: 130,
 
-            width: Math.min(
-                window.innerWidth * .58,
-                220
-            )
+            width
 
         };
 
@@ -74,16 +78,18 @@ function measureHero(){
 
     else{
 
+        const width = Math.min(
+            window.innerWidth * .32,
+            440
+        );
+
         heroStart = {
 
-            x: window.innerWidth * .07,
+            x: startMargin + width / 2,
 
-            y: window.innerHeight * .50,
+            y: window.innerHeight * .44,
 
-            width: Math.min(
-                window.innerWidth * .32,
-                440
-            )
+            width
 
         };
 
@@ -121,15 +127,15 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.18;
+    const start = heroHeight * 0.12;
 
-    const end = heroHeight * 0.60;
+    const end = heroHeight * 0.45;
 
     let progress = (scroll - start) / (end - start);
 
     progress = Math.max(0, Math.min(progress,1));
 
-    const ease = 1 - Math.pow(1-progress,3);
+    const ease = 1 - Math.pow(1-progress,4);
 
     /* -------------------------
        Navbar
