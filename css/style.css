@@ -2444,18 +2444,6 @@ footer a:hover{
     margin-bottom:10px;
 }
 
-.hero-logo{
-
-    left:24px;
-
-    top:100px;
-
-    width:min(180px,45vw);
-
-    transform:translateX(0);
-
-}
-
 .hero p{
 
     max-width:330px;
