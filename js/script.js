@@ -127,23 +127,21 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.80;
+    const start = heroHeight * 0.25;
 
-    const end = heroHeight * 1.05;
+    const end = heroHeight * 0.72;
 
     let progress = (scroll - start) / (end - start);
 
     progress = Math.max(0, Math.min(progress,1));
 
-    const ease = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+    const ease = 1 - Math.pow(1 - progress, 3);
 
     /* -------------------------
        Navbar
-    ------------------------- */
+    -------------------------
 
-    if(progress > 0.15){
+    if(progress > 0.05){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
