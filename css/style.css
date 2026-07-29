@@ -380,6 +380,24 @@ nav.visible{
 
 }
 
+#heroLogoLink{
+
+    position:fixed;
+
+    display:block;
+
+    pointer-events:auto;
+
+    z-index:5500;
+
+}
+
+#heroLogoLink img{
+
+    pointer-events:none;
+
+}
+
 nav.scrolled .logo-target img{
 
     opacity:1;

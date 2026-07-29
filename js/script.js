@@ -60,7 +60,7 @@ function measureHero(){
     if(mobile){
 
         const width = Math.min(
-            window.innerWidth * .58,
+            window.innerWidth * .52,
             220
         );
 
@@ -68,7 +68,7 @@ function measureHero(){
 
             x: window.innerWidth / 2,
 
-            y: 180,
+            y: 220,
 
             width
 
@@ -127,21 +127,21 @@ function updateHero(){
        Progress
     ------------------------- */
 
-    const start = heroHeight * 0.06;
+    const start = heroHeight * 0.20;
 
-    const end = heroHeight * 0.42;
+    const end = heroHeight * 0.98;
 
     let progress = (scroll - start) / (end - start);
 
     progress = Math.max(0, Math.min(progress,1));
 
-    const ease = 1 - Math.pow(1 - progress, 3);
+    const ease = progress * progress * progress * (progress * (6 * progress - 15) + 10);
 
     /* -------------------------
        Navbar
     ------------------------- */
 
-    if(scroll > 10 || progress > 0){
+    if(scroll > 10 || progress > 0.03){
 
         nav.classList.add("visible");
         nav.classList.add("scrolled");
@@ -197,6 +197,14 @@ function updateHero(){
 
     heroLogo.style.transform =
         `translate(-50%,-50%) scale(${1 - ease * 0.14})`;
+
+    if(heroLogoLink){
+        const logoHeight = heroLogo.getBoundingClientRect().height;
+        heroLogoLink.style.left = `${x - w / 2}px`;
+        heroLogoLink.style.top = `${y - logoHeight / 2}px`;
+        heroLogoLink.style.width = `${w}px`;
+        heroLogoLink.style.height = `${logoHeight}px`;
+    }
 
     heroLogo.style.filter =
 
