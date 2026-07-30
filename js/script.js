@@ -1,3 +1,5 @@
+(function(){
+
 /* =========================================
    LOADER
 ========================================= */
@@ -327,10 +329,10 @@ document.querySelectorAll(".mobile-menu a").forEach(link=>{
 
 const heroImages = [
 
-    "assets/hero/hero1.webp",
-    "assets/hero/hero2.webp",
-    "assets/hero/hero3.webp",
-    "assets/hero/hero4.webp"
+    "assets/street/1.webp",
+    "assets/street/2.webp",
+    "assets/street/3.webp",
+    "assets/street/4.webp"
 
 ];
 
