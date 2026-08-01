@@ -4,21 +4,26 @@
    LOADER
 ========================================= */
 
-window.addEventListener("load", () => {
+function hideLoader() {
 
     const loader = document.querySelector(".loader");
 
-    if (loader) {
+    if (!loader || loader.dataset.hidden === "true") return;
 
-        loader.style.opacity = "0";
+    loader.dataset.hidden = "true";
 
-        setTimeout(() => {
+    loader.style.opacity = "0";
 
-            loader.style.display = "none";
+    setTimeout(() => {
 
-        }, 800);
-    }
-});
+        loader.style.display = "none";
+
+    }, 800);
+}
+
+window.addEventListener("load", hideLoader);
+window.addEventListener("DOMContentLoaded", hideLoader);
+setTimeout(hideLoader, 7000);
 
 /* =========================================
    HERO ENGINE
@@ -741,3 +746,5 @@ window.addEventListener("mousemove",(e)=>{
     mouseY = (e.clientY/window.innerHeight-.5)*20;
 
 });
+
+})();

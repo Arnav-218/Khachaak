@@ -172,6 +172,10 @@ section{
     justify-content:center;
 
     transition:.8s ease;
+
+    animation: loader-fadeout 0.8s ease forwards;
+
+    animation-delay:7s;
 }
 
 .loader img{
@@ -196,6 +200,19 @@ section{
     100%{
         opacity:.5;
         transform:scale(.98);
+    }
+}
+
+@keyframes loader-fadeout {
+
+    0%, 99% {
+        opacity:1;
+        visibility:visible;
+    }
+
+    100% {
+        opacity:0;
+        visibility:hidden;
     }
 }
 
