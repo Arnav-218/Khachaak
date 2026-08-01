@@ -448,6 +448,80 @@ document.querySelectorAll("section").forEach(section => {
 
 });
 
+function balanceHomeGalleryColumns(){
+
+    const galleryGrid = document.querySelector(".gallery-grid");
+
+    if(!galleryGrid || document.querySelector(".gallery-page")) return;
+
+    const items = Array.from(galleryGrid.querySelectorAll(".gallery-item"));
+
+    if(items.length === 0) return;
+
+    const minColumnWidth = 320;
+
+    const columnCount = Math.max(1, Math.min(4, Math.floor((galleryGrid.clientWidth + 22) / (minColumnWidth + 22))));
+
+    const columns = Array.from({length: columnCount},() => {
+
+        const col = document.createElement("div");
+
+        col.className = "gallery-column";
+
+        return col;
+
+    });
+
+    galleryGrid.textContent = "";
+
+    columns.forEach(col => galleryGrid.appendChild(col));
+
+    const itemHeights = items.map(item => ({
+
+        item,
+
+        height: item.getBoundingClientRect().height || item.offsetHeight
+
+    }));
+
+    itemHeights.sort((a,b) => b.height - a.height);
+
+    itemHeights.forEach(({item}) => {
+
+        const target = columns.reduce((shortest,column) =>
+
+            shortest.scrollHeight <= column.scrollHeight ? shortest : column,
+
+            columns[0]
+
+        );
+
+        target.appendChild(item);
+
+    });
+
+}
+
+window.addEventListener("load", balanceHomeGalleryColumns);
+
+window.addEventListener("resize", () => {
+
+    const galleryGrid = document.querySelector(".gallery-grid");
+
+    if(!galleryGrid || document.querySelector(".gallery-page")) return;
+
+    galleryGrid.querySelectorAll(".gallery-column").forEach(col => {
+
+        while(col.firstChild) galleryGrid.appendChild(col.firstChild);
+
+        col.remove();
+
+    });
+
+    balanceHomeGalleryColumns();
+
+});
+
 
 /* =========================================
    GALLERY FILTERS

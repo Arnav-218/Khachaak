@@ -1427,22 +1427,37 @@ nav ul li.active a{
 
     display:flex;
 
-    flex-wrap:wrap;
-
     gap:22px;
 
     width:100%;
 
-    justify-content:flex-start;
+    max-width:1360px;
+
+    margin:0 auto;
+
+    justify-content:center;
 
     align-items:flex-start;
+}
+
+.gallery-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+    flex:1 1 0;
+
+    min-width:300px;
 }
 
 .gallery-item{
 
     display:block;
 
-    width:calc(33.333% - 14.66px);
+    width:100%;
 
     overflow:hidden;
 
@@ -1456,7 +1471,7 @@ nav ul li.active a{
 
     transition:all .4s ease;
 
-    margin-bottom:0;
+    margin:0;
 }
 
 .gallery-item.dimmed{
@@ -2549,7 +2564,14 @@ footer a:hover{
 
     .gallery-grid{
 
-        column-count:1;
+        flex-direction:column;
+
+    }
+
+    .gallery-column{
+
+        min-width:100%;
+
     }
 
     .gallery-page{
