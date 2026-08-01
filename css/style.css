@@ -1426,14 +1426,18 @@ nav ul li.active a{
 .gallery-grid,
 .gallery-page{
 
-    display:grid;
+    column-count:3;
 
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    column-gap:22px;
 
-    gap:22px;
+    column-fill:auto;
 }
 
 .gallery-item{
+
+    display:inline-block;
+
+    width:100%;
 
     break-inside:avoid;
 
@@ -2344,12 +2348,12 @@ footer a:hover{
 
     .gallery-grid{
 
-        grid-template-columns:repeat(2,1fr);
+        column-count:2;
     }
 
     .gallery-page{
 
-        grid-template-columns:repeat(2,1fr);
+        column-count:2;
     }
 }
 
