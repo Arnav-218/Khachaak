@@ -1423,14 +1423,24 @@ nav ul li.active a{
    GALLERY GRID LAYOUT
 ========================================= */
 
-.gallery-grid,
-.gallery-page{
+.gallery-grid{
 
     column-width:300px;
 
     column-gap:22px;
 
     column-fill:auto;
+
+    width:100%;
+}
+
+.gallery-grid::after{
+
+    content:'';
+
+    display:block;
+
+    break-inside:avoid;
 }
 
 .gallery-item{
@@ -1452,6 +1462,8 @@ nav ul li.active a{
     border:none;
 
     transition:all .4s ease;
+
+    margin-bottom:22px;
 }
 
 .gallery-item.dimmed{
@@ -1484,6 +1496,10 @@ nav ul li.active a{
     border-radius:16px;
 
     transition:.8s ease;
+
+    object-fit:cover;
+
+    background:transparent;
 }
 
 .gallery-item.dimmed img{
@@ -2353,7 +2369,11 @@ footer a:hover{
 
     .gallery-page{
 
-        column-count:2;
+        display:grid;
+
+        grid-template-columns:repeat(2,minmax(240px,1fr));
+
+        gap:22px;
     }
 }
 
