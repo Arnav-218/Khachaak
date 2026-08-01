@@ -1539,6 +1539,29 @@ nav ul li.active a{
     text-align:center;
 }
 
+/* Mobile: hide dimmed items (filters should remove non-matching items on small screens) */
+@media (max-width: 1024px) {
+
+    .gallery-item.dimmed{
+
+        display: none !important;
+
+        opacity: 1 !important;
+
+        transform: none !important;
+
+        filter: none !important;
+
+    }
+
+    .gallery-item.active-filter{
+
+        display: block !important;
+
+    }
+
+}
+
 /* =========================================
    THEME OF THE MONTH
 ========================================= */

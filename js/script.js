@@ -486,13 +486,14 @@ function balanceHomeGalleryColumns(){
 
     itemHeights.forEach(({item}) => {
 
-        const target = columns.reduce((shortest,column) =>
-
-            shortest.scrollHeight <= column.scrollHeight ? shortest : column,
-
-            columns[0]
-
-        );
+        // choose the column with the smallest scrollHeight; if tie, pick the one with fewer items
+        let target = columns[0];
+        for(let i=1;i<columns.length;i++){
+            const col = columns[i];
+            if(col.scrollHeight < target.scrollHeight || (col.scrollHeight === target.scrollHeight && col.children.length < target.children.length)){
+                target = col;
+            }
+        }
 
         target.appendChild(item);
 
@@ -551,7 +552,7 @@ filterButtons.forEach(button => {
             .toLowerCase()
             .replace(/\s+/g,"-");
 
-        const isMobile = window.innerWidth <= 768;
+        const isMobile = window.innerWidth <= 1024;
 
         galleryItems.forEach(item => {
 
