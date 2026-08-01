@@ -1426,7 +1426,7 @@ nav ul li.active a{
 .gallery-grid,
 .gallery-page{
 
-    column-count:3;
+    column-width:300px;
 
     column-gap:22px;
 
@@ -2521,7 +2521,7 @@ footer a:hover{
 
     .gallery-grid{
 
-        grid-template-columns:1fr;
+        column-count:1;
     }
 
     .gallery-page{
