@@ -55,6 +55,12 @@ const heroScroll = document.querySelector(".hero-scroll");
 const isHeroPage =
     !!(hero && heroLogo && logoTarget);
 
+if (!isHeroPage && nav) {
+
+    nav.classList.add("visible", "scrolled");
+
+}
+
 let heroStart = {};
 
 let heroTarget = {};
