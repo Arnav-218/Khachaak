@@ -1420,26 +1420,20 @@ nav ul li.active a{
 }
 
 /* =========================================
-   MASONRY GALLERY
+   GALLERY GRID LAYOUT
 ========================================= */
 
-.gallery-grid{
-
-    column-count:5;
-
-    column-gap:22px;
-}
-
+.gallery-grid,
 .gallery-page{
 
-    column-count:5;
+    display:grid;
 
-    column-gap:22px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:22px;
 }
 
 .gallery-item{
-
-    margin-bottom:22px;
 
     break-inside:avoid;
 
@@ -2193,14 +2187,14 @@ footer a:hover{
 
 .gallery-page{
 
-    column-count:4;
+    display:grid;
 
-    column-gap:22px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:22px;
 }
 
 .gallery-page .gallery-item{
-
-    margin-bottom:22px;
 
     break-inside:avoid;
 }
@@ -2348,12 +2342,12 @@ footer a:hover{
 
     .gallery-grid{
 
-        column-count:2;
+        grid-template-columns:repeat(2,1fr);
     }
 
     .gallery-page{
 
-        column-count:2;
+        grid-template-columns:repeat(2,1fr);
     }
 }
 
@@ -2521,12 +2515,12 @@ footer a:hover{
 
     .gallery-grid{
 
-        column-count:1;
+        grid-template-columns:1fr;
     }
 
     .gallery-page{
 
-        column-count:1;
+        grid-template-columns:1fr;
     }
 
     /* =========================================
