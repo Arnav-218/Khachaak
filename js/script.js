@@ -472,17 +472,15 @@ function balanceHomeGalleryColumns(){
 
     });
 
-    galleryGrid.textContent = "";
-
-    columns.forEach(col => galleryGrid.appendChild(col));
-
+    // Measure heights while items are still in the DOM so we get real values
     const itemHeights = items.map(item => ({
-
         item,
-
-        height: item.getBoundingClientRect().height || item.offsetHeight
-
+        height: item.getBoundingClientRect().height || item.offsetHeight || 0
     }));
+
+    // Clear grid and create columns after measuring
+    galleryGrid.textContent = "";
+    columns.forEach(col => galleryGrid.appendChild(col));
 
     itemHeights.sort((a,b) => b.height - a.height);
 
