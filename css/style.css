@@ -978,66 +978,6 @@ nav ul li.active a{
     pointer-events:none;
 }
 
-/* =========================================
-   SCROLL
-========================================= */
-
-.hero-scroll{
-
-    position:absolute;
-
-    left:50%;
-
-    bottom:40px;
-
-    transform:translateX(-50%);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:10px;
-
-    z-index:20;
-
-    color:#d8d8d8;
-
-    letter-spacing:3px;
-
-    font-size:.75rem;
-}
-
-.scroll-line{
-
-    width:1px;
-
-    height:50px;
-
-    background:rgba(255,255,255,.18);
-
-    position:relative;
-}
-
-.scroll-dot{
-
-    position:absolute;
-
-    left:50%;
-
-    top:0;
-
-    width:6px;
-
-    height:6px;
-
-    border-radius:50%;
-
-    background:var(--bronze);
-
-    transform:translateX(-50%);
-}
 
 /* =========================================
    HERO BUTTONS
@@ -1493,6 +1433,20 @@ nav ul li.active a{
 
     box-shadow:
     0 0 25px rgba(199,154,118,.18);
+}
+
+/* make active-filtered items visually above dimmed ones */
+.gallery-item.active-filter{
+    position:relative;
+    z-index:5;
+}
+
+/* temporary focus highlight when filter selected on desktop */
+.focus-highlight{
+    outline:3px solid rgba(199,154,118,.9);
+    box-shadow:0 0 34px rgba(199,154,118,.28);
+    transform:translateY(-6px) scale(1.03);
+    transition:all .35s ease;
 }
 
 .gallery-item img{

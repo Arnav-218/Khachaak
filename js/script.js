@@ -655,6 +655,33 @@ filterButtons.forEach(button => {
 
         }
 
+        /* On desktop/tablet, scroll to and highlight the first matching image */
+        if(!isFullGallery && !isMobile && filter !== "all"){
+
+            const firstMatch = document.querySelector(`.gallery-item.${filter}`);
+
+            if(firstMatch){
+
+                firstMatch.scrollIntoView({
+
+                    behavior: "smooth",
+
+                    block: "center"
+
+                });
+
+                firstMatch.classList.add('focus-highlight');
+
+                setTimeout(()=>{
+
+                    firstMatch.classList.remove('focus-highlight');
+
+                },2200);
+
+            }
+
+        }
+
     });
 
 });
