@@ -472,19 +472,11 @@ function balanceHomeGalleryColumns(){
 
     });
 
-    // Measure heights while items are still in the DOM so we get real values
-    const itemHeights = items.map(item => ({
-        item,
-        height: item.getBoundingClientRect().height || item.offsetHeight || 0
-    }));
-
-    // Clear grid and create columns after measuring
+    // Clear grid and create columns
     galleryGrid.textContent = "";
     columns.forEach(col => galleryGrid.appendChild(col));
 
-    itemHeights.sort((a,b) => b.height - a.height);
-
-    itemHeights.forEach(({item}) => {
+    items.forEach(item => {
 
         // choose the column with the smallest scrollHeight; if tie, pick the one with fewer items
         let target = columns[0];

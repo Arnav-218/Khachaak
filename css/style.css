@@ -1582,6 +1582,12 @@ nav ul li.active a{
     grid-template-columns:repeat(3,1fr);
 
     gap:30px;
+
+    width:100%;
+
+    max-width:1280px;
+
+    margin:0 auto;
 }
 
 .month-card{
@@ -1596,15 +1602,20 @@ nav ul li.active a{
 
     border:1px solid rgba(199,154,118,.12);
 
-    border-radius:14px;
+    border-radius:16px;
 
     padding:14px;
 
-    background:#111;
-
-    border-radius:16px;
-
     transition:.35s ease;
+}
+
+.month-img-wrap{
+
+    width:100%;
+
+    overflow:hidden;
+
+    border-radius:12px;
 }
 
 .month-card img{
@@ -1619,7 +1630,7 @@ nav ul li.active a{
 
     transition:.8s ease;
 
-   border-radius:12px;
+    border-radius:12px;
 }
 
 /* #1 Porsche */
@@ -1644,13 +1655,13 @@ nav ul li.active a{
 
     position:absolute;
 
-    top:18px;
+    top:24px;
 
-    left:18px;
+    left:24px;
 
-    width:54px;
+    width:50px;
 
-    height:54px;
+    height:50px;
 
     display:flex;
 
@@ -1669,11 +1680,13 @@ nav ul li.active a{
     font-size:1.3rem;
 
     z-index:5;
+
+    box-shadow:0 4px 14px rgba(0,0,0,.4);
 }
 
 .month-card h3{
 
-    padding:22px;
+    padding:16px 10px 4px;
 
     margin:0;
 
@@ -1681,13 +1694,25 @@ nav ul li.active a{
 
     font-family:'Inter',sans-serif;
 
-    font-size:1.1rem;
+    font-size:1.05rem;
 
     font-weight:600;
 
     color:#fff;
 
-    background:#0b0b0b;
+    background:transparent;
+}
+
+.month-card h3 a{
+
+    color:#fff;
+
+    transition:color .3s ease;
+}
+
+.month-card h3 a:hover{
+
+    color:var(--bronze);
 }
 
 .month-card:hover{
@@ -1701,7 +1726,7 @@ nav ul li.active a{
 
 .month-card:hover img{
 
-    transform:scale(1.04);
+    transform:scale(1.06);
 }
 
 /* =========================================
@@ -2324,7 +2349,9 @@ footer a:hover{
 
     .month-grid{
 
-        grid-template-columns:1fr;
+        grid-template-columns:repeat(2,1fr);
+
+        gap:24px;
     }
 
     .stats-grid{
@@ -2616,6 +2643,13 @@ footer a:hover{
     /* =========================================
        PHOTOS OF THE MONTH
     ========================================= */
+
+    .month-grid{
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+    }
 
     .month-card img{
 
